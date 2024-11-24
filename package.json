@@ -1,0 +1,10 @@
+{
+  "name": "HITS_Front_Blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "assets/js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": true
+}
