@@ -1,16 +1,16 @@
-import headerView from "./renderers/components/headerRenderer.js";
 import indexView from './renderers/templates/indexRenderer.js';
 import notFoundView from './renderers/templates/notFoundRenderer.js';
 import loginView from './renderers/templates/loginRenderer.js';
+import headerView from "./renderers/components/headerRenderer.js";
 
-const route = (eventOrPath) => {
+const route = async (eventOrPath) => {
     if (typeof eventOrPath === 'string') {
         window.history.pushState({}, "", eventOrPath);
-        handleLocation();
+        await handleLocation();
     } else {
         eventOrPath.preventDefault();
         window.history.pushState({}, "", eventOrPath.target.href);
-        handleLocation();
+        await handleLocation();
     }
 };
 
@@ -23,7 +23,7 @@ const routes = {
 const handleLocation = async () => {
     const path = window.location.pathname;
     const route = routes[path] || routes[404];
-    await headerView.render(path);
+    await headerView.render();
     await route.render();
     updateLinks();
 };
@@ -38,4 +38,4 @@ const updateLinks = () => {
 window.onpopstate = handleLocation;
 window.route = route;
 
-handleLocation();
+await handleLocation();

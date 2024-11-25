@@ -1,4 +1,4 @@
-import login from '../../services/authService.js'
+import userService from '/assets/js/services/userService.js'
 
 let loginView = {
     render: async () => {
@@ -14,8 +14,8 @@ let loginView = {
             const password = document.querySelector("input[type=password]").value;
 
             try {
-                await login(email, password);
-                route("/");
+                await userService.loginUser(email, password);
+                await route("/");
             } catch (error) {
                 alert("Неверный логин или пароль");
                 console.log(error);

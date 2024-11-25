@@ -1,5 +1,5 @@
 const setToken = (token) => {
-    document.cookie = `token=${encodeURIComponent(token)}; path=/; Secure; HttpOnly; SameSite=Strict`;
+    document.cookie = `token=${encodeURIComponent(token)}; path=/; Secure; SameSite=Strict`;
 };
 
 const getToken = () => {

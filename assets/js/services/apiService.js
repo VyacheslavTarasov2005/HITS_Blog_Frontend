@@ -2,12 +2,12 @@ import tokenService from './tokenService.js';
 
 const API_URL = 'https://blog.kreosoft.space/api';
 
-const request = async (url, method, body = {}, auth = false) => {
+const request = async (url, method, body = null, isAuthorised = false) => {
 
     url = API_URL + url;
 
     const headers = {"content-type": "application/json"};
-    if (auth) {
+    if (isAuthorised) {
         const token = tokenService.getToken();
         if (token) {
             headers["Authorization"] = `Bearer ${token}`;
@@ -37,8 +37,8 @@ const request = async (url, method, body = {}, auth = false) => {
 }
 
 export default {
-    post: (url, body, auth) => request(url, "POST", body, auth),
-    get: (url, body, auth) => request(url, "GET", body, auth),
-    put: (url, body, auth) => request(url, "PUT", body, auth),
-    delete: (url, body, auth) => request(url, "DELETE", body, auth),
+    post: (url, body, isAuthorised) => request(url, "POST", body, isAuthorised),
+    get: (url, body, isAuthorised) => request(url, "GET", body, isAuthorised),
+    put: (url, body, isAuthorised) => request(url, "PUT", body, isAuthorised),
+    delete: (url, body, isAuthorised) => request(url, "DELETE", body, isAuthorised),
 }

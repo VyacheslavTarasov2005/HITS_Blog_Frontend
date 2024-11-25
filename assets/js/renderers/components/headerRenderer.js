@@ -1,8 +1,10 @@
-import getToken from "/assets/js/services/tokenService.js";
+import tokenService from "/assets/js/services/tokenService.js";
+import userService from "/assets/js/services/userService.js";
 
 let headerView = {
     render: async (route) => {
-        const nav = document.querySelector("header nav");
+        const header = document.querySelector("header");
+        const nav = header.querySelector("header nav");
         const navLinks = nav.querySelectorAll("a");
 
         const linksNames = new Map([["/authors", "Авторы"], ["/groups", "Группы"]]);
@@ -44,10 +46,13 @@ let headerView = {
                 break;
         }
 
-        const token = getToken;
+        const renderLoginLink = () => {
+            const profileButton = header.querySelector("#profileButton");
 
-        if (!token) {
-            const header = document.querySelector("header");
+            if (profileButton.style.display !== "") {
+                profileButton.style.display = "";
+            }
+
             const loginExists = !!header.querySelector("#login");
 
             if (!loginExists) {
@@ -59,13 +64,40 @@ let headerView = {
                 header.appendChild(loginLink);
             }
         }
-        else {
-            const profileButton = document.querySelector("#profileButton");
+
+        const renderProfileButton = async () => {
+            const profileButton = header.querySelector("#profileButton");
+
+            const dropdownButton = profileButton.querySelector(".dropdown-button");
+
+            const emailBlock = dropdownButton.querySelector(".email");
+
+            const email = localStorage.getItem("email");
+
+            if (email) {
+                emailBlock.textContent = email;
+            }
+            else {
+                try {
+                    const user = await userService.getUser();
+                    emailBlock.textContent = user.email;
+                    localStorage.setItem("email", user.email);
+                }
+                catch (error) {
+                    renderLoginLink();
+                    return;
+                }
+            }
+
+            const loginLink = header.querySelector("#login");
+
+            if (loginLink) {
+                loginLink.remove();
+            }
 
             if (profileButton.style.display === "") {
                 profileButton.style.display = "block";
 
-                const dropdownButton = profileButton.querySelector(".dropdown-button");
                 const dropdownMenu = profileButton.querySelector(".dropdown-menu");
 
                 dropdownButton.addEventListener("click", (event) => {
@@ -77,6 +109,15 @@ let headerView = {
                     dropdownMenu.style.display = "none";
                 });
             }
+        }
+
+        const token = tokenService.getToken();
+
+        if (!token) {
+            renderLoginLink();
+        }
+        else {
+            await renderProfileButton();
         }
     }
 }
