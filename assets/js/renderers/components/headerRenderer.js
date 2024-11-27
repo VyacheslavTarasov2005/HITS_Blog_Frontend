@@ -37,10 +37,6 @@ let headerView = {
                 updateHeader(["/authors", "/groups"]);
                 break;
 
-            case "/login":
-                updateHeader();
-                break;
-
             default:
                 updateHeader();
                 break;

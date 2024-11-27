@@ -18,7 +18,7 @@ let loginView = {
                 await route("/");
             } catch (error) {
                 alert("Неверный логин или пароль");
-                console.log(error);
+                console.error(error);
             }
         });
     }

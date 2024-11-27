@@ -4,4 +4,5 @@
 @import url('layout/main.css');
 @import url('module/container.css');
 @import url('module/container-login.css');
+@import url('module/container-registration.css');
 @import url('state/button.css');
