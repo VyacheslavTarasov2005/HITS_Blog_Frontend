@@ -1,8 +1,8 @@
-.container-login {
+.container-auth {
     width: 30%;
 }
 
-.container-login > a {
+.container-auth > a {
     border: #E5E8E9 1px solid;
     border-radius: 5px;
     background-color: #6C757D;
@@ -11,8 +11,8 @@
     padding: 2%;
 }
 
-.container-login input,
-.container-login > form > button {
+.container-auth input,
+.container-auth > form > button {
     border: #E5E8E9 1px solid;
     border-radius: 5px;
     font-size: 1vw;
@@ -20,19 +20,19 @@
     width: 100%;
 }
 
-.container-login > form > button {
+.container-auth > form > button {
     background-color: #0D6EFD;
     color: white;
 }
 
-.container-login > form > div {
+.container-auth > form > div {
     display: flex;
     flex-direction: column;
     gap: 5px;
     font-size: 1vw;
 }
 
-.container-login > h1 {
+.container-auth > h1 {
     font-weight: normal;
     font-size: 1.5vw;
 }

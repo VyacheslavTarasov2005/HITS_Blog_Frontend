@@ -1,9 +1,8 @@
-.container-registration .dropdown-menu-container {
+.dropdown-container {
     position: relative;
 }
 
-.container-registration .dropdown-button {
-    position: relative;
+.dropdown-container .dropdown-button {
     border: #E5E8E9 1px solid;
     border-radius: 5px;
     background-color: white;
@@ -13,7 +12,7 @@
     text-align: left;
 }
 
-.container-registration .dropdown-menu {
+.dropdown-container .dropdown-menu {
     display: none;
     position: absolute;
     top: 85%;
@@ -24,17 +23,12 @@
     font-size: 1vw;
 }
 
-.container-registration .dropdown-menu li:hover {
+.dropdown-container .dropdown-menu li:hover {
     cursor: pointer;
     color: #0D6EFD;
 }
 
-.container-registration .hint {
-    color: grey;
-    margin-top: 1%;
-}
-
-.container-registration .dropdown-button::after {
+.dropdown-container .dropdown-button::after {
     content: '';
     position: absolute;
     top: 50%;

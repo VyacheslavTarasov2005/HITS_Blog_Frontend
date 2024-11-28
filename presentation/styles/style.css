@@ -3,6 +3,7 @@
 @import url('layout/footer.css');
 @import url('layout/main.css');
 @import url('module/container.css');
-@import url('module/container-login.css');
+@import url('module/container-auth.css');
 @import url('module/container-registration.css');
+@import url('module/dropdown-list.css');
 @import url('state/button.css');

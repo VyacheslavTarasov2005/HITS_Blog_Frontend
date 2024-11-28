@@ -1,7 +1,5 @@
-import apiService from "./apiService.js";
-import tokenService from "./tokenService.js";
-
-import registerUserRequest from "/assets/js/DTOs/registerUserRequest.js";
+import apiService from "/data/api.js";
+import tokenService from "/data/tokenService.js";
 
 const registerUser = async (registerUserRequest) => {
     const response = await apiService.post("/account/register", registerUserRequest);
@@ -16,8 +14,8 @@ const registerUser = async (registerUserRequest) => {
     return response;
 };
 
-const loginUser = async (email, password) => {
-    const response = await apiService.post("/account/login", {email: email, password: password});
+const loginUser = async (loginUserRequset) => {
+    const response = await apiService.post("/account/login", loginUserRequset);
     tokenService.setToken(response.token);
 
     const lsEmail = localStorage.getItem("email");

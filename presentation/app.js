@@ -2,6 +2,7 @@ import indexView from './renderers/templates/indexRenderer.js';
 import notFoundView from './renderers/templates/notFoundRenderer.js';
 import loginView from './renderers/templates/loginRenderer.js';
 import registrationView from './renderers/templates/registrationRenderer.js';
+
 import headerView from "./renderers/components/headerRenderer.js";
 
 const route = async (eventOrPath) => {
