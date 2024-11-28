@@ -1,6 +1,7 @@
 import userService from "/domain/services/userService.js";
 import dropdownButtons from "/presentation/handlers/dropdownButtons.js";
 import tokenService from "/data/tokenService.js";
+import logoutController from "./logoutController.js";
 
 const headerAuthController = async () => {
     const header = document.querySelector("header");
@@ -60,6 +61,7 @@ const headerAuthController = async () => {
             const dropdownMenu = profileButton.querySelector(".dropdown-menu");
 
             dropdownButtons(profileButton, dropdownMenu);
+            logoutController(document.getElementById("logout"));
         }
     }
 

@@ -1,21 +1,19 @@
+import dropdown from "./dropdown.js";
+
 const dropdownList = (button, menu) => {
-    button.addEventListener("click", (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-    });
+    if (!button.dataset.initialized) {
+        dropdown(button, menu);
 
-    document.addEventListener("click", () => {
-        menu.style.display = "none";
-    });
+        const elements = menu.querySelectorAll("li");
 
-    const elements = menu.querySelectorAll("li");
-
-    elements.forEach(element => {
-        element.addEventListener("click", (event) => {
-            button.textContent = element.textContent;
+        elements.forEach(element => {
+            element.addEventListener("click", (event) => {
+                button.textContent = element.textContent;
+            })
         })
-    })
+    }
+
+    button.dataset.initialized = "true";
 }
 
 export default dropdownList;

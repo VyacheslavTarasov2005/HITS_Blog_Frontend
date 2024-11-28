@@ -1,12 +1,11 @@
-const dropdownButtons = (button, menu) => {
-    button.addEventListener("click", (event) => {
-        event.stopPropagation();
-        menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-    })
+import dropdown from './dropdown.js';
 
-    document.addEventListener("click", () => {
-        menu.style.display = "none";
-    });
+const dropdownButtons = (button, menu) => {
+    if (!button.dataset.initialized) {
+        dropdown(button, menu);
+    }
+
+    button.dataset.initialized = "true";
 }
 
 export default dropdownButtons;

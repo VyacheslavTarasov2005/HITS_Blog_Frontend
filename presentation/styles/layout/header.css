@@ -60,7 +60,13 @@ header button {
     padding: 10%;
 }
 
-#profileButton > .dropdown-menu > a {
+#profileButton > .dropdown-menu > a,
+#profileButton > .dropdown-menu > button {
     align-self: flex-start;
     margin-left: 5%;
+}
+
+#profileButton > .dropdown-menu > button {
+    border: none;
+    background: none;
 }

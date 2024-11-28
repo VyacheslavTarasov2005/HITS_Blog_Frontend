@@ -22,16 +22,15 @@ const request = async (url, method, body = null, auth = false) => {
             body: body ? JSON.stringify(body) : null,
         })
 
-        if (response.ok) {
-            return await response.json();
+        if (response.status === 200) {
+            return {status: response.status, body: await response.json()};
         }
 
-        const error = await response.json();
-        throw new Error(error.message);
+        return {status: response.status};
     }
     catch (error) {
         console.error("Не удалось выполнить запрос", error);
-        throw error;
+        return {status: 0};
     }
 }
 
