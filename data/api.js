@@ -23,7 +23,7 @@ const request = async (url, method, body = null, auth = false) => {
         })
 
         if (response.status === 200) {
-            return {status: response.status, body: await response.json()};
+            return {status: response.status, body: await response.json().catch(() => null)};
         }
 
         return {status: response.status};

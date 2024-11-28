@@ -16,7 +16,7 @@ const registerUser = async (registerUserRequest) => {
     else {
         throw new Error(response.statusText);
     }
-};
+}
 
 const loginUser = async (loginUserRequset) => {
     const response = await apiService.post("/account/login", loginUserRequset);
@@ -28,7 +28,7 @@ const loginUser = async (loginUserRequset) => {
     else {
         throw new Error(response.statusText);
     }
-};
+}
 
 const logoutUser = async () => {
     const response = await apiService.post("/account/logout", undefined, true);
@@ -53,9 +53,21 @@ const getUser = async () => {
     }
 }
 
+const editUser = async (editUserRequest) => {
+    const response = await apiService.put("/account/profile", editUserRequest, true);
+
+    if (response.status === 200) {
+        localStorage.removeItem("email");
+    }
+    else {
+        throw new Error(response.statusText);
+    }
+}
+
 export default {
     registerUser,
     loginUser,
     logoutUser,
-    getUser
-};
+    getUser,
+    editUser
+}

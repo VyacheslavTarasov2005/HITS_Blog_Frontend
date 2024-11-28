@@ -32,7 +32,7 @@
     content: '';
     position: absolute;
     top: 50%;
-    right: 3%;
+    right: 0.9em;
     transform: translateY(-50%) rotate(135deg);
     border-style: solid;
     border-width: 0.15em 0.15em 0 0;

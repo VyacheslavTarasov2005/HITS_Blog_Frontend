@@ -1,23 +1,23 @@
 import registerUserRequest from "/data/DTOs/registerUserRequest.js";
 import userService from "/domain/services/userService.js";
+import dateConverter from "../converters/dateConverter.js";
+import genderConverter from "../converters/genderConverter.js";
 
 const registrationController = (form) => {
     form.addEventListener("submit", async event => {
         event.preventDefault();
 
-        const name = form.querySelector("input[name='fullName']").value;
-        const birthDate = form.querySelector("input[name='birthDate']").valueAsDate
-            .toISOString();
+        const name = form.querySelector("input[name='fullName']");
+        const birthDate = form.querySelector("input[name='birthDate']");
+        const gender = form.querySelector(".dropdown-button");
+        const phoneNumber = document.querySelector("input[name='phoneNumber']");
+        const email = document.querySelector("input[type='email']");
+        const password = document.querySelector("input[type='password']");
 
-        const genderSelectorButton = form.querySelector(".dropdown-button");
-        const gender = genderSelectorButton.textContent;
-
-        const phoneNumber = document.querySelector("input[name='phoneNumber']").value;
-        const email = document.querySelector("input[type='email']").value;
-        const password = document.querySelector("input[type='password']").value;
-
-        const request = new registerUserRequest(name, password, email, birthDate,
-            (gender === "Мужчина" ? "Male" : "Female"), phoneNumber);
+        const request = new registerUserRequest(name.value, password.value, email.value,
+            birthDate.value === "" ? null : dateConverter.convertTo(birthDate.valueAsDate),
+            genderConverter.convertTo(gender.textContent),
+            phoneNumber.value === "" ? null : phoneNumber.value);
 
         try {
             await userService.registerUser(request);

@@ -1,0 +1,40 @@
+.container-profile {
+    margin-top: 1%;
+    width: 70%;
+}
+
+.container-profile div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-profile span {
+    font-size: 1vw;
+}
+
+.container-profile input {
+    padding: 0.5em;
+    border: #E5E8E9 1px solid;
+    border-radius: 5px;
+    font-size: 1vw;
+    width: 70%;
+}
+
+.container-profile button[type="submit"] {
+    margin-top: 1%;
+    padding: 0.5em;
+    align-self: flex-end;
+    border: #E5E8E9 1px solid;
+    border-radius: 5px;
+    background-color: #0D6EFD;
+    font-size: 1vw;
+    color: white;
+}
+
+.container-profile .dropdown-container {
+    width: 70%;
+}
+
+.container-profile .dropdown-container button {
+    padding: 0.5em;
+}
