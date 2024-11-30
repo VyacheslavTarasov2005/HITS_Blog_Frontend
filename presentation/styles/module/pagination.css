@@ -1,0 +1,40 @@
+.pagination {
+    display: flex;
+}
+
+.pagination .pages {
+    display: flex;
+    align-self: flex-end;
+    border: #0D6EFD 1px solid;
+    border-radius: 5px;
+}
+
+.pagination .pages a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0D6EFD;
+}
+
+.pagination .pages .goToPage {
+    display: flex;
+    border-left: 1px solid #0D6EFD;
+    border-right: 1px solid #0D6EFD;
+}
+
+.pagination .pages .goToPage a:not(:last-child) {
+    border-right: 1px solid #0D6EFD;
+}
+
+.pagination .quantity {
+    margin-left: auto;
+}
+
+.pagination .quantity .dropdown-button {
+    width: 100%;
+}
+
+.pagination .quantity .dropdown-menu {
+    min-width: 50%;
+}
+

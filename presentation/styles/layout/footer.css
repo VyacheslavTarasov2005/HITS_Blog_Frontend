@@ -5,6 +5,7 @@ footer {
     padding: 1% 0 1% 5%;
     border-top: #E5E8E9 solid thin;
     background-color: #F8F9FA;
+    box-shadow: 0 100vh 0 100vh #F8F9FA;
 }
 
 footer div {

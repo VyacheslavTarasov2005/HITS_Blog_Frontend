@@ -1,5 +1,6 @@
 import dropdownList from "/presentation/handlers/dropdownList.js";
 import tagsController from "/application/controllers/tagsController.js";
+import paginationView from "../components/paginationRenderer.js";
 
 let indexView = {
     render: async () => {
@@ -7,6 +8,8 @@ let indexView = {
             await fetch('/presentation/views/templates/indexView.html').then((data) => data.text());
 
         document.title = 'Главная'
+
+        await paginationView.render(document.querySelector("main .main-page"));
 
         const form = document.querySelector("form");
 

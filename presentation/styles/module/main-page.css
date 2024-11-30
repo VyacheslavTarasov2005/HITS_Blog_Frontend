@@ -1,5 +1,6 @@
 .main-page {
     display: flex;
+    align-self: stretch;
     flex-direction: column;
     width: 70%;
     gap: 20px;
@@ -14,4 +15,23 @@
     background-color: #0D6EFD;
     font-size: 0.7vw;
     color: white;
+}
+
+.main-page .pagination .pages a {
+    padding: 0.7em;
+    font-size: 0.7vw;
+}
+
+.main-page .pagination .quantity {
+    font-size: 0.7vw;
+}
+
+.main-page .pagination .quantity .dropdown-button {
+    padding: 0.7em;
+    font-size: 0.7vw;
+}
+
+.main-page .pagination .quantity .dropdown-menu {
+    padding: 0.7em;
+    font-size: 0.7vw;
 }
