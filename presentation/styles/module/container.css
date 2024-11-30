@@ -1,11 +1,9 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
     border: #E5E8E9 1px solid;
     border-radius: 5px;
     text-align: left;
-    padding: 1%;
 }
 
 .container--shadow {

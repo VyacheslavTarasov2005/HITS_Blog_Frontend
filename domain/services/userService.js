@@ -1,8 +1,8 @@
-import apiService from "/data/api.js";
+import api from "/data/api.js";
 import tokenService from "/data/tokenService.js";
 
 const registerUser = async (registerUserRequest) => {
-    const response = await apiService.post("/account/register", registerUserRequest);
+    const response = await api.post("/account/register", registerUserRequest);
 
     if (response.status === 200) {
         tokenService.setToken(response.body.token);
@@ -19,7 +19,7 @@ const registerUser = async (registerUserRequest) => {
 }
 
 const loginUser = async (loginUserRequset) => {
-    const response = await apiService.post("/account/login", loginUserRequset);
+    const response = await api.post("/account/login", loginUserRequset);
 
     if (response.status === 200) {
         tokenService.setToken(response.body.token);
@@ -31,7 +31,7 @@ const loginUser = async (loginUserRequset) => {
 }
 
 const logoutUser = async () => {
-    const response = await apiService.post("/account/logout", undefined, true);
+    const response = await api.post("/account/logout", undefined, true);
 
     if (response.status === 200 || response.status === 401) {
         tokenService.removeToken();
@@ -43,7 +43,7 @@ const logoutUser = async () => {
 }
 
 const getUser = async () => {
-    const response = await apiService.get("/account/profile", undefined, true);
+    const response = await api.get("/account/profile", undefined, true);
 
     if (response.status === 200) {
         return response.body;
@@ -54,7 +54,7 @@ const getUser = async () => {
 }
 
 const editUser = async (editUserRequest) => {
-    const response = await apiService.put("/account/profile", editUserRequest, true);
+    const response = await api.put("/account/profile", editUserRequest, true);
 
     if (response.status === 200) {
         localStorage.removeItem("email");

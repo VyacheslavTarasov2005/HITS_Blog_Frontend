@@ -1,0 +1,102 @@
+.posts-filtration {
+    display: flex;
+}
+
+.posts-filtration form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1%;
+    gap: 1.7%;
+}
+
+.posts-filtration form input,
+.posts-filtration form select{
+    border: #E5E8E9 1px solid;
+    border-radius: 5px;
+    font-size: 0.7vw;
+    color: rgb(60, 60, 60);
+}
+
+.posts-filtration form div p,
+.posts-filtration form div span,
+.posts-filtration form div button {
+    font-size: 0.7vw;
+    color: rgb(60, 60, 60);
+}
+
+.posts-filtration input[type="text"],
+.posts-filtration select {
+    padding: 0.7em;
+}
+
+.posts-filtration form > div {
+    width: 100%;
+}
+
+.posts-filtration input[name="authorName"],
+.posts-filtration select[name="tags"] {
+    width: 100%;
+}
+
+.posts-filtration .dropdown-block {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.posts-filtration .dropdown-container {
+    margin-top: auto;
+    width: 95%;
+}
+
+.posts-filtration .dropdown-button {
+    padding: 0.7em;
+    width: 100%;
+}
+
+.posts-filtration .dropdown-menu {
+    font-size: 0.7vw;
+    color: rgb(60, 60, 60);
+}
+
+.posts-filtration .left-part {
+    display: flex;
+    flex-direction: column;
+}
+
+.posts-filtration .inline-input {
+    display: inline-flex;
+    margin-top: auto;
+    width: 100%;
+}
+
+.posts-filtration .right-part .inline-input {
+    margin-top: 2%;
+    gap: 4%;
+}
+
+.posts-filtration .checkbox-block {
+    display: flex;
+    margin-top: 3%;
+}
+
+.posts-filtration input[type="checkbox"] {
+    margin-right: 0.7em;
+    width: 1em;
+    height: 1em;
+}
+
+.posts-filtration .submit-block {
+    align-self: center;
+    margin-left: auto;
+}
+
+.posts-filtration button[type="submit"] {
+    padding: 0.7em;
+    border: #E5E8E9 1px solid;
+    border-radius: 5px;
+    background-color: #0D6EFD;
+    color: white;
+    margin-left: auto;
+}

@@ -28,7 +28,7 @@ const routes = {
 const handleLocation = async () => {
     const path = window.location.pathname;
     const route = routes[path] || routes[404];
-    await headerView.render();
+    await headerView.render(route === notFoundView ? undefined : path);
     await route.render();
     updateLinks();
 };

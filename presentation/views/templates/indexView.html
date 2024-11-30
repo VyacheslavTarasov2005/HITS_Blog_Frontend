@@ -1,1 +1,55 @@
-<h1>Main</h1>
+<div class="main-page">
+    <a href="/placeholder">Написать пост</a>
+    <div class="container posts-filtration">
+        <div class="subcontainer">
+            <span>Фильтры</span>
+        </div>
+        <form>
+            <div class="left-part">
+                <div>
+                    <p>Поиск по имени автора</p>
+                    <input type="text" name="authorName">
+                </div>
+                <div class="inline-input">
+                    <div class="dropdown-block">
+                        <p>Сортировать</p>
+                        <div class="dropdown-container">
+                            <button class="dropdown-button">По дате создания (сначала новые)</button>
+                            <ul class="container container--shadow dropdown-menu">
+                                <li>По дате создания (сначала новые)</li>
+                                <li>По дате создания (сначала старые)</li>
+                                <li>По количеству лайков (по возрастанию)</li>
+                                <li>По количеству лайков (по убыванию)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Время чтения от</p>
+                        <input type="text" name="readTimeFrom">
+                    </div>
+                </div>
+            </div>
+            <div class="right-part">
+                <div>
+                    <p>Поиск по тегам</p>
+                    <select name="tags" size="3" multiple>
+                        <option style="display: none;">placeholder</option>
+                    </select>
+                </div>
+                <div class="inline-input">
+                    <div>
+                        <p>Время чтения до</p>
+                        <input type="text" name="readTimeTo">
+                    </div>
+                    <div class="checkbox-block">
+                        <input type="checkbox">
+                        <span>Только мои группы</span>
+                    </div>
+                    <div class="submit-block">
+                        <button type="submit">Применить</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -54,6 +54,7 @@ header button {
 #profileButton > .dropdown-menu {
     display: none;
     position: absolute;
+    gap: 10px;
     width: 8vw;
     background-color: white;
     margin-top: 5%;
@@ -63,7 +64,6 @@ header button {
 #profileButton > .dropdown-menu > a,
 #profileButton > .dropdown-menu > button {
     align-self: flex-start;
-    margin-left: 5%;
 }
 
 #profileButton > .dropdown-menu > button {
