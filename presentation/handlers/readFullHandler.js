@@ -15,6 +15,9 @@ const readFullHandler = (content, fullText) => {
             readFullButton.style.display = "none";
         })
     }
+    else {
+        textBlock.textContent = fullText;
+    }
 }
 
 export default readFullHandler;
