@@ -9,7 +9,7 @@
     border-radius: 5px;
 }
 
-.pagination .pages a {
+.pagination .pages button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,7 +22,7 @@
     border-right: 1px solid #0D6EFD;
 }
 
-.pagination .pages .goToPage a:not(:last-child) {
+.pagination .pages .goToPage button:not(:last-child) {
     border-right: 1px solid #0D6EFD;
 }
 

@@ -1,7 +1,7 @@
 footer {
     display: flex;
     align-items: center;
-    min-height: 5vh;
+    height: 5vh;
     padding: 1% 0 1% 5%;
     border-top: #E5E8E9 solid thin;
     background-color: #F8F9FA;

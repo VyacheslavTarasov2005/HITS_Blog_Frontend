@@ -21,6 +21,11 @@ a {
     text-align: center;
 }
 
+button {
+    border: none;
+    background: none;
+}
+
 form {
     display: flex;
     flex-direction: column;

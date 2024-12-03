@@ -1,15 +1,19 @@
 import dropdownList from "/presentation/handlers/dropdownList.js";
+import paginationController from "/application/controllers/paginationController.js";
 
 let paginationView = {
-    render: async (content) => {
+    render: async (content, pagesQuantity) => {
         content.innerHTML +=
             await fetch('/presentation/views/components/paginationView.html')
                 .then((data) => data.text());
 
-       const quantityDropdownButton = document.querySelector(".pagination .quantity .dropdown-button");
-       const quantityDropdownMenu = document.querySelector(".pagination .quantity .dropdown-menu");
+        await paginationController();
 
-       dropdownList(quantityDropdownButton, quantityDropdownMenu);
+        const quantityDropdownButton = document.querySelector(".pagination .quantity .dropdown-button");
+
+        const quantityDropdownMenu = document.querySelector(".pagination .quantity .dropdown-menu");
+
+        dropdownList(quantityDropdownButton, quantityDropdownMenu);
     }
 }
 

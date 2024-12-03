@@ -31,7 +31,7 @@ const loginUser = async (loginUserRequset) => {
 }
 
 const logoutUser = async () => {
-    const response = await api.post("/account/logout", undefined, true);
+    const response = await api.post("/account/logout");
 
     if (response.status === 200 || response.status === 401) {
         tokenService.removeToken();
@@ -43,7 +43,7 @@ const logoutUser = async () => {
 }
 
 const getUser = async () => {
-    const response = await api.get("/account/profile", undefined, true);
+    const response = await api.get("/account/profile");
 
     if (response.status === 200) {
         return response.body;
@@ -54,7 +54,7 @@ const getUser = async () => {
 }
 
 const editUser = async (editUserRequest) => {
-    const response = await api.put("/account/profile", editUserRequest, true);
+    const response = await api.put("/account/profile", editUserRequest);
 
     if (response.status === 200) {
         localStorage.removeItem("email");
