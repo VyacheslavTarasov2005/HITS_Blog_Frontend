@@ -2,7 +2,7 @@ import dropdownList from "/presentation/handlers/dropdownList.js";
 import paginationController from "/application/controllers/paginationController.js";
 
 let paginationView = {
-    render: async (content, pagesQuantity) => {
+    render: async (content) => {
         content.innerHTML +=
             await fetch('/presentation/views/components/paginationView.html')
                 .then((data) => data.text());

@@ -3,6 +3,7 @@ import notFoundView from './renderers/templates/notFoundRenderer.js';
 import loginView from './renderers/templates/loginRenderer.js';
 import registrationView from './renderers/templates/registrationRenderer.js';
 import profileView from './renderers/templates/profileRenderer.js';
+import communitiesListView from './renderers/templates/communitiesListRenderer.js';
 
 import headerView from "./renderers/components/headerRenderer.js";
 
@@ -22,7 +23,8 @@ const routes = {
     "/": indexView,
     "/login": loginView,
     "/registration": registrationView,
-    "/profile": profileView
+    "/profile": profileView,
+    "/communities": communitiesListView
 };
 
 const handleLocation = async () => {

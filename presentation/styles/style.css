@@ -7,9 +7,11 @@
 @import url('module/container-registration.css');
 @import url('module/container-profile.css');
 @import url('module/main-page.css');
+@import url('module/communities.css');
 @import url('module/posts-filtration.css');
 @import url('module/posts.css');
 @import url('module/pagination.css');
 @import url('module/dropdown-list.css');
 @import url('module/subcontainer.css');
 @import url('state/button.css');
+@import url('state/template.css');
