@@ -12,7 +12,7 @@ const unsubscribeButtonController = async (communityBlock) => {
             subscribeButton.classList.remove("template");
         }
         catch (error) {
-            alert("Не удалось подписаться");
+            alert("Не удалось отписаться");
             console.error(error);
         }
     })

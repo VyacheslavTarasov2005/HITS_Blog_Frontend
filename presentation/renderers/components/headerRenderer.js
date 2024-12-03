@@ -36,6 +36,10 @@ let headerView = {
                 updateHeader(["/authors", "/communities"]);
                 break;
 
+            case "/communities":
+                updateHeader(["/authors", "/communities"]);
+                break;
+
             default:
                 updateHeader();
                 break;
