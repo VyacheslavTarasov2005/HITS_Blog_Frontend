@@ -13,7 +13,6 @@ let indexView = {
 
         await postsView.render(document.querySelector("main .main-page"));
         await paginationView.render(document.querySelector("main .main-page"), 10);
-        await mainPostsFiltrationController(document.querySelector("main .main-page"));
 
         const form = document.querySelector("form");
 
@@ -24,6 +23,7 @@ let indexView = {
 
         const tagsSelector = form.querySelector('select[name="tags"]');
         await tagsController(tagsSelector);
+        await mainPostsFiltrationController(document.querySelector("main .main-page"));
     }
 }
 
