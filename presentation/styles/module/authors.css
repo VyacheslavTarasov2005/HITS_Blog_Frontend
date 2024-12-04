@@ -1,13 +1,11 @@
 .authors {
-    display: flex;
-    flex-direction: column;
-    width: 85vw;
-    gap: 2em;
+    width: 80vw;
 }
 
 .authors .author {
     display: flex;
     align-items: center;
+    padding: 0.7%;
     border-bottom: #E5E8E9 solid 1px;
     font-size: 0.7vw;
 }
