@@ -19,7 +19,7 @@ const profileController = async () => {
             fullName.value = user.fullName;
             phoneNumber.value = user.phoneNumber;
             gender.textContent = genderConverter.convertFrom(user.gender);
-            birthDate.value = user.birthDate === null ? "" : dateConverter.convertFrom(user.birthDate);
+            birthDate.value = user.birthDate === null ? "" : user.birthDate.substring(0, 10);
         }
         catch (error) {
             alert("Не удалось получить данные о пользователе");

@@ -1,0 +1,94 @@
+.authors {
+    display: flex;
+    flex-direction: column;
+    width: 85vw;
+    gap: 2em;
+}
+
+.authors .author {
+    display: flex;
+    align-items: center;
+    border-bottom: #E5E8E9 solid 1px;
+    font-size: 0.7vw;
+}
+
+.authors .author .avatar {
+    position: relative;
+}
+
+.authors .author .avatar img {
+    width: 3vw;
+    height: 3vw;
+    object-fit: cover;
+    object-position: top;
+    border: 1px solid #E5E8E9;
+    border-radius: 50%;
+}
+
+.authors .author .avatar .crown {
+    position: absolute;
+    top: -20%;
+    left: 75%;
+    rotate: 15deg;
+    width: 1.75vw;
+    height: 1.75vw;
+}
+
+.authors .author .avatar .crown.first {
+    fill: #FFD700;
+}
+
+.authors .author .avatar .crown.second {
+    fill: #778899;
+}
+
+.authors .author .avatar .crown.third {
+    fill: #2F4F4F;
+}
+
+.authors .author .author-info {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 1.75em;
+    width: 95%;
+}
+
+.authors .author .author-info .author-credentials {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1em;
+}
+
+.authors .author .author-info .author-credentials .top-part {
+    display: flex;
+    gap: 0.5em;
+    font-weight: bold;
+}
+
+.authors .author .author-info .author-credentials .top-part .name {
+    color: black;
+}
+
+.authors .author .author-info .author-credentials .top-part .create-date {
+    font-weight: bold;
+    color: grey;
+}
+
+.authors .author .author-info .author-credentials .birth-date .field-name {
+    font-weight: bold;
+    color: #677581;
+}
+
+.authors .author .author-statistic {
+    display: flex;
+    align-self: flex-start;
+    gap: 0.7em;
+}
+
+.authors .author .author-statistic div {
+    padding: 0.3em 1em 0.3em 1em;
+    border-radius: 5px;
+    background-color: #0D6EFD;
+    color: white;
+}
