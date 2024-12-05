@@ -6,32 +6,47 @@
     gap: 1em;
 }
 
-.main-page > a {
+.main-page > .write-post-link {
     align-self: flex-end;
     margin-right: 1em;
-    padding: 0.7em;
-    border: #E5E8E9 1px solid;
-    border-radius: 5px;
-    background-color: #0D6EFD;
-    font-size: 0.7vw;
-    color: white;
 }
 
-.main-page .pagination .pages button {
-    padding: 0.7em;
-    font-size: 0.7vw;
+.main-page .posts-filtration form {
+    flex-direction: row;
 }
 
-.main-page .pagination .quantity {
-    font-size: 0.7vw;
+.main-page .posts-filtration input[name="authorName"] {
+    width: 100%;
 }
 
-.main-page .pagination .quantity .dropdown-button {
-    padding: 0.7em;
-    font-size: 0.7vw;
+.main-page .posts-filtration .dropdown-container {
+    margin-top: auto;
+    width: 95%;
 }
 
-.main-page .pagination .quantity .dropdown-menu {
-    padding: 0.7em;
-    font-size: 0.7vw;
+.main-page .posts-filtration .left-part {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-page .posts-filtration .inline-input {
+    display: inline-flex;
+    margin-top: auto;
+    width: 100%;
+}
+
+.main-page .posts-filtration .right-part .inline-input {
+    margin-top: 2%;
+    gap: 4%;
+}
+
+.main-page .posts-filtration .checkbox-block {
+    display: flex;
+    margin-top: 3%;
+}
+
+.main-page .posts-filtration input[type="checkbox"] {
+    margin-right: 0.7em;
+    width: 1em;
+    height: 1em;
 }

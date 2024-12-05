@@ -14,15 +14,6 @@
     position: relative;
 }
 
-.authors .author .avatar img {
-    width: 3vw;
-    height: 3vw;
-    object-fit: cover;
-    object-position: top;
-    border: 1px solid #E5E8E9;
-    border-radius: 50%;
-}
-
 .authors .author .avatar .crown {
     position: absolute;
     top: -20%;

@@ -1,0 +1,63 @@
+<div class="community">
+    <div class="container community-card">
+        <div class="top-part">
+            <h1></h1>
+            <div class="right-part">
+                <a href="/placeholder" class="write-post-link">Написать пост</a>
+                <button class="container subscribe-button template">Подписаться</button>
+                <button class="container unsubscribe-button template">Отписаться</button>
+            </div>
+        </div>
+        <div class="subscribers">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+            </svg>
+            <span class="quantity"></span>
+            <span>подписчиков</span>
+        </div>
+        <div class="community-type">
+            <span>Тип сообщества: </span>
+            <span class="type"></span>
+        </div>
+        <h2>Администраторы</h2>
+        <div class="admins">
+            <div class="admin">
+                <div class="avatar">
+                    <img src="/presentation/images/womanAvatar.jpeg" alt="womanAvatar" class="woman-avatar template">
+                    <img src="/presentation/images/manAvatar.jpg" alt="manAvatar" class="man-avatar template template">
+                </div>
+                <p class="name"></p>
+            </div>
+        </div>
+    </div>
+    <div class="container posts-filtration">
+        <div class="subcontainer">
+            <span>Фильтры</span>
+        </div>
+        <form>
+            <div class="top-part">
+                <div class="dropdown-block">
+                    <p>Сортировать</p>
+                    <div class="dropdown-container">
+                        <button class="dropdown-button">По дате создания (сначала новые)</button>
+                        <ul class="container container--shadow dropdown-menu">
+                            <li>По дате создания (сначала новые)</li>
+                            <li>По дате создания (сначала старые)</li>
+                            <li>По количеству лайков (по возрастанию)</li>
+                            <li>По количеству лайков (по убыванию)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <p>Поиск по тегам</p>
+                    <select name="tags" size="3" multiple>
+                        <option style="display: none;">placeholder</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit">Применить</button>
+        </form>
+    </div>
+</div>

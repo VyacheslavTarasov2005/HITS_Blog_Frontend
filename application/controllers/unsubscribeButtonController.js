@@ -1,14 +1,14 @@
 import communitiesService from "/domain/services/communitiesService.js";
 
 const unsubscribeButtonController = async (communityBlock) => {
-    const unsubscribeButton = communityBlock.querySelector(".unsubscribe");
+    const unsubscribeButton = communityBlock.querySelector(".unsubscribe-button");
 
     unsubscribeButton.addEventListener("click", async () => {
         try {
             await communitiesService.unsubscribe(communityBlock.id);
             unsubscribeButton.classList.add("template");
 
-            const subscribeButton = communityBlock.querySelector(".subscribe");
+            const subscribeButton = communityBlock.querySelector(".subscribe-button");
             subscribeButton.classList.remove("template");
         }
         catch (error) {

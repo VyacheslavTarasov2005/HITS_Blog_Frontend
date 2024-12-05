@@ -6,13 +6,17 @@
     display: flex;
     flex-direction: row;
     padding: 1%;
+    width: 100%;
     background-color: #F8F9FA;
     font-size: 0.7vw;
 }
 
-.communities .community h1 {
+.communities .community .community-name {
     align-self: center;
     margin-left: 1%;
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: black;
 }
 
 .communities .community button {
@@ -20,12 +24,4 @@
     padding: 1%;
     font-size: 0.7vw;
     color: white;
-}
-
-.communities .community .subscribe {
-    background-color: #0D6EFD;
-}
-
-.communities .community .unsubscribe {
-    background-color: #DC3545;
 }

@@ -6,7 +6,7 @@ let communitiesListRenderer = {
             await fetch('/presentation/views/templates/communitiesListView.html')
                 .then((data) => data.text());
 
-        document.title = "Группы";
+        document.title = "Сообщества";
 
         await communitiesListController();
     }

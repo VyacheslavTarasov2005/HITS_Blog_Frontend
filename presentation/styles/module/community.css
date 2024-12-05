@@ -1,0 +1,67 @@
+.community {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 60%;
+}
+
+.community .community-card {
+    display: flex;
+    padding: 1%;
+    gap: 1em;
+    font-size: 0.7vw;
+}
+
+.community .community-card .top-part {
+    display: flex;
+    width: 100%;
+}
+
+.community .community-card .top-part h1 {
+    font-size: 2vw;
+}
+
+.community .community-card .top-part .right-part {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 1em;
+}
+
+.community .community-card .top-part .right-part button {
+    padding: 0.7em;
+}
+
+.community .community-card .subscribers svg {
+    width: 0.7vw;
+    height: 0.7vw;
+}
+
+.community .community-card .admins .admin {
+    display: flex;
+    padding-top: 0.7%;
+    padding-bottom: 0.7%;
+}
+
+.community .community-card .admins .admin:not(:last-child) {
+    border-bottom: #E5E8E9 solid 1px;
+}
+
+.community .community-card .admins .admin .name {
+    margin-left: 1.75em;
+    font-weight: bold;
+}
+
+.community .posts-filtration form {
+    gap: 1em;
+}
+
+.community .posts-filtration .top-part {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.community .posts-filtration .top-part div {
+    width: 100%;
+}

@@ -1,0 +1,9 @@
+.write-post-link {
+    padding: 0.7em;
+    border: #E5E8E9 1px solid;
+    border-radius: 5px;
+    background-color: #0D6EFD;
+    font-size: 0.7vw;
+    color: white;
+    white-space: nowrap;
+}

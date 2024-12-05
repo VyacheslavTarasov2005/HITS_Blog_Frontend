@@ -2,7 +2,6 @@ import dropdownList from "/presentation/handlers/dropdownList.js";
 import tagsController from "/application/controllers/tagsController.js";
 import mainPostsFiltrationController from "/application/controllers/mainPostsFiltrationController.js";
 import postsView from "../components/postsRenderer.js";
-import paginationView from "../components/paginationRenderer.js";
 
 let indexView = {
     render: async () => {
@@ -12,7 +11,6 @@ let indexView = {
         document.title = 'Главная'
 
         await postsView.render(document.querySelector("main .main-page"));
-        await paginationView.render(document.querySelector("main .main-page"), 10);
 
         const form = document.querySelector("form");
 

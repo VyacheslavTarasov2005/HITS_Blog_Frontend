@@ -1,5 +1,21 @@
 import api from "/data/api.js";
 import communitiesListCommunityEntity from "../entities/communitiesListCommunityEntity.js";
+import communityInfoEntity from "../entities/communityInfoEntity.js";
+import adminEntity from "../entities/adminEntity.js";
+
+const getUserRole = async (communityId) => {
+    const response = await api.get(`/community/${communityId}/role`);
+
+    if (response.status === 200) {
+        return response.body;
+    }
+    else if (response.status === 401) {
+        return null;
+    }
+    else {
+        throw new Error(response.statusText);
+    }
+}
 
 const getCommunitiesList = async () => {
     const communitiesListResponse = await api.get("/community");
@@ -57,8 +73,43 @@ const unsubscribe = async (communityId) => {
     }
 }
 
+const getCommunityPosts = async (communityId) => {
+    const response = await api.get(`/community/${communityId}/post`, undefined,
+        new URLSearchParams(window.location.search));
+
+    if (response.status === 200) {
+        return response.body;
+    }
+    else {
+        throw new Error(response.statusText);
+    }
+}
+
+const getCommunityInfo = async (communityId) => {
+    const communityInfoResponse = await api.get(`/community/${communityId}`);
+
+    let admins = [];
+    if (communityInfoResponse.status === 200) {
+        communityInfoResponse.body.administrators.forEach((administrator) => {
+            const admin = new adminEntity(administrator.fullName, administrator.gender);
+            admins.push(admin);
+        })
+    }
+    else {
+        throw new Error(communityInfoResponse.statusText);
+    }
+
+    const userRole = await getUserRole(communityId);
+
+    return new communityInfoEntity(communityInfoResponse.body.name, communityInfoResponse.body.subscribersCount,
+        userRole, admins, communityInfoResponse.body.isClosed);
+}
+
 export default {
+    getUserRole,
     getCommunitiesList,
     subscribe,
-    unsubscribe
+    unsubscribe,
+    getCommunityPosts,
+    getCommunityInfo
 }

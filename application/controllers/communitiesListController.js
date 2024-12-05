@@ -13,15 +13,16 @@ const communitiesListController = async () => {
 
             communityTemplate.id = community.id;
 
-            const communityName = communityTemplate.querySelector("h1");
+            const communityName = communityTemplate.querySelector(".community-name");
             communityName.textContent = community.name;
+            communityName.href = `/communities/${community.id}`;
 
             if (community.status === "notSubscribed") {
-                const subscribeButton = communityTemplate.querySelector(".subscribe");
+                const subscribeButton = communityTemplate.querySelector(".subscribe-button");
                 subscribeButton.classList.remove("template");
             }
             else if (community.status === "Subscriber") {
-                const unsubscribeButton = communityTemplate.querySelector(".unsubscribe");
+                const unsubscribeButton = communityTemplate.querySelector(".unsubscribe-button");
                 unsubscribeButton.classList.remove("template");
             }
 

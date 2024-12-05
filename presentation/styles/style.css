@@ -8,11 +8,16 @@
 @import url('module/container-profile.css');
 @import url('module/main-page.css');
 @import url('module/communities.css');
+@import url('module/community.css');
 @import url('module/authors.css');
 @import url('module/posts-filtration.css');
 @import url('module/posts.css');
 @import url('module/pagination.css');
 @import url('module/dropdown-list.css');
 @import url('module/subcontainer.css');
+@import url('module/write-post-link.css');
+@import url('module/subscribe-button.css');
+@import url('module/unsubscribe-button.css');
+@import url('module/avatar.css');
 @import url('state/button.css');
 @import url('state/template.css');

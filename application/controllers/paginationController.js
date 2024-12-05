@@ -1,87 +1,98 @@
 import postsController from "./postsController.js";
 
-const paginationController = async () => {
+let initialized = false;
+
+const paginationController = async (pagination) => {
+    const buttonQuantity = 3;
+
     const pageSelector = document.querySelector(".pagination .goToPage");
     const quantityDropdownButton = document.querySelector(".pagination .quantity .dropdown-button");
+    const goForward = document.querySelector(".pagination .forward");
 
-    let pagesQuantity;
+    while (pageSelector.children.length > 1) {
+        pageSelector.removeChild(pageSelector.lastChild);
+    }
 
-    const updatePagination = async () => {
-        const pagination = await postsController(document.querySelector(".posts"), true);
-        pagesQuantity = pagination.count;
+    const updateButtons = () => {
+        if (pagination.count <= buttonQuantity) {
+            for (let i = 1; i <= pagination.count; i++) {
+                const buttonTemplate = pageSelector.children[0].cloneNode(true);
 
-        if (pagination.current !== 1) {
-            if (pagination.current !== pagesQuantity) {
-                for (let i = 0; i < pageSelector.children.length; i++) {
-                    pageSelector.children[i].textContent = (pagination.current - pageSelector.children.length + i + 2)
-                        .toString();
+                buttonTemplate.textContent = i.toString();
+
+                if (i === pagination.current) {
+                    buttonTemplate.classList.add("selected");
                 }
-            }
-            else {
-                for (let i = 0; i < pageSelector.children.length; i++) {
-                    pageSelector.children[i].textContent = (pagination.current - (pageSelector.children.length - i) + 1)
-                        .toString();
-                }
+
+                buttonTemplate.classList.remove("template");
+                pageSelector.appendChild(buttonTemplate);
             }
         }
         else {
-            for (let i = 0; i < pageSelector.children.length; i++) {
-                pageSelector.children[i].textContent = (i + 1).toString();
+            const start = Math.max(1, pagination.current - Math.floor(buttonQuantity / 2));
+            const end = Math.min(pagination.count, start + buttonQuantity - 1);
+
+            for (let i = start; i <= end; i++) {
+                const buttonTemplate = pageSelector.children[0].cloneNode(true);
+
+                buttonTemplate.textContent = i.toString();
+
+                if (i === pagination.current) {
+                    buttonTemplate.classList.add("selected");
+                }
+
+                buttonTemplate.classList.remove("template");
+                pageSelector.appendChild(buttonTemplate);
             }
         }
 
-        [...pageSelector.children].forEach((element) => {
-            if (element.textContent === pagination.current.toString()) {
-                element.style.backgroundColor = "#0D6EFD";
-                element.style.color = "white";
-            }
-            else {
-                element.style.background = "none";
-                element.style.color = "#0D6EFD";
-            }
-        })
+        quantityDropdownButton.textContent = pagination.size;
+        goForward.querySelector("span").textContent = pagination.count;
 
-        quantityDropdownButton.textContent = pagination.size.toString();
+        [...pageSelector.children].forEach(element => {
+            element.addEventListener('click', async () => {
+                const urlParams = new URLSearchParams(window.location.search);
+                urlParams.set('page', element.textContent);
+                window.history.pushState({}, "", `?${urlParams.toString()}`);
+
+                await postsController();
+            })
+        });
     }
 
-    [...pageSelector.children].forEach(element => {
-        element.addEventListener('click', () => {
+    if (!initialized) {
+        const goBack = document.querySelector(".pagination .back");
+        goBack.addEventListener("click", async () => {
             const urlParams = new URLSearchParams(window.location.search);
-            urlParams.set('page', element.textContent);
+            urlParams.set('page', '1');
             window.history.pushState({}, "", `?${urlParams.toString()}`);
 
-            updatePagination()
-        })
-    })
+            await postsController();
+        });
 
-    const goBack = document.querySelector(".pagination .back");
-    goBack.addEventListener("click", () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        urlParams.set('page', '1');
-        window.history.pushState({}, "", `?${urlParams.toString()}`);
+        goForward.addEventListener("click", async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lastPage = goForward.querySelector("span").textContent;
+            urlParams.set('page', lastPage);
+            window.history.pushState({}, "", `?${urlParams.toString()}`);
 
-        updatePagination()
-    })
+            await postsController();
+        });
 
-    const goForward = document.querySelector(".pagination .forward");
-    goForward.addEventListener("click", () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        urlParams.set('page', pagesQuantity.toString());
-        window.history.pushState({}, "", `?${urlParams.toString()}`);
+        const quantityDropdownMenu = document.querySelector(".pagination .quantity .dropdown-menu");
 
-        updatePagination()
-    })
+        quantityDropdownMenu.addEventListener("click", async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.set("page", "1");
+            urlParams.set("size", quantityDropdownButton.textContent);
+            window.history.pushState({}, "", `?${urlParams.toString()}`);
 
-    const quantityDropdownMenu = document.querySelector(".pagination .quantity .dropdown-menu");
+            await postsController();
+        });
+    }
 
-    quantityDropdownMenu.addEventListener("click", () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        urlParams.set("size", quantityDropdownButton.textContent);
-        window.history.pushState({}, "", `?${urlParams.toString()}`);
-        updatePagination()
-    })
-
-    await updatePagination();
+    await updateButtons();
+    initialized = true;
 }
 
 export default paginationController

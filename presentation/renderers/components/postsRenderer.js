@@ -1,3 +1,4 @@
+import paginationView from "./paginationRenderer.js";
 import postsController from "/application/controllers/postsController.js";
 
 let postsView = {
@@ -5,9 +6,9 @@ let postsView = {
         content.innerHTML += await fetch('/presentation/views/components/postsView.html')
             .then((data) => data.text());
 
-        const postsBlock = content.querySelector('.posts');
+        await paginationView.render(content);
 
-        await postsController(postsBlock);
+        await postsController();
     }
 }
 

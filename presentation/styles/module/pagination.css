@@ -13,6 +13,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0.7em;
+    font-size: 0.7vw;
     color: #0D6EFD;
 }
 
@@ -22,19 +24,29 @@
     border-right: 1px solid #0D6EFD;
 }
 
+.pagination .pages .goToPage .selected {
+    background-color: #0D6EFD;
+    color: white;
+}
+
 .pagination .pages .goToPage button:not(:last-child) {
     border-right: 1px solid #0D6EFD;
 }
 
 .pagination .quantity {
     margin-left: auto;
+    font-size: 0.7vw;
 }
 
 .pagination .quantity .dropdown-button {
+    padding: 0.7em;
     width: 100%;
+    font-size: 0.7vw;
 }
 
 .pagination .quantity .dropdown-menu {
+    padding: 0.7em;
     min-width: 50%;
+    font-size: 0.7vw;
 }
 
