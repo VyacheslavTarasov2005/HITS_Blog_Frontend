@@ -35,6 +35,11 @@ const communityCardController = async () => {
             unsubscribeButton.classList.remove("template");
         }
 
+        if (communityInfo.userRole !== "Administrator") {
+            const writePostLink = communityCard.querySelector(".write-post-link");
+            writePostLink.style.pointerEvents = "none";
+        }
+
         const adminsContainer = communityCard.querySelector(".admins");
 
         let adminInfo = adminsContainer.children[0];
