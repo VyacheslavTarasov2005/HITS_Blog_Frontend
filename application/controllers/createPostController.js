@@ -22,6 +22,10 @@ const createPostController = async (form) => {
 
     const groupMenu = groupContainer.querySelector('ul');
 
+    groupMenu.children[0].addEventListener('click', () => {
+        groupButton.removeAttribute('id');
+    })
+
     const myCommunities = await communitiesService.getCommunitiesListWithAdminRole();
     myCommunities.forEach(community => {
         const communityAnswerTemplate = groupMenu.children[0].cloneNode(true);
