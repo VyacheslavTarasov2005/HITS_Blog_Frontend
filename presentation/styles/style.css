@@ -19,5 +19,7 @@
 @import url('module/subscribe-button.css');
 @import url('module/unsubscribe-button.css');
 @import url('module/avatar.css');
+@import url('module/create-post.css');
 @import url('state/button.css');
 @import url('state/template.css');
+@import url('state/disabled.css');

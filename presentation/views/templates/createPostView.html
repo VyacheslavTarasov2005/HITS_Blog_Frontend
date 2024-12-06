@@ -1,0 +1,52 @@
+<div class="container create-post-container">
+    <h1>Написать новый пост</h1>
+    <form>
+        <div class="row">
+            <div class="name-input">
+                <p>Название</p>
+                <input type="text" name="title">
+            </div>
+            <div class="read-time-input">
+                <p>Время чтения</p>
+                <input type="text" name="readTime">
+            </div>
+        </div>
+        <div class="row">
+            <div class="dropdown-block">
+                <p>Группа</p>
+                <div class="dropdown-container group">
+                    <button class="dropdown-button">Без группы</button>
+                    <ul class="container container--shadow dropdown-menu">
+                        <li>Без группы</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tags-selector">
+                <p>Тэги</p>
+                <select name="tags" size="3" multiple>
+                    <option style="display: none"></option>
+                </select>
+            </div>
+        </div>
+        <div class="image-input">
+            <p>Ссылка на картинку</p>
+            <input type="text" name="imageUrl">
+        </div>
+        <div>
+            <p>Текст</p>
+            <textarea name="body" rows="10"></textarea>
+        </div>
+        <div>
+            <h2>Адрес</h2>
+            <div class="address">
+                <div class="template">
+                    <p>Субъект РФ</p>
+                    <select class="js-example-basic-single"></select>
+                </div>
+            </div>
+        </div>
+        <div class="submit-block">
+            <button type="submit">Создать пост</button>
+        </div>
+    </form>
+</div>

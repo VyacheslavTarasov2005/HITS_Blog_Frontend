@@ -26,18 +26,26 @@ const communityCardController = async () => {
             communityType.textContent = "открытое";
         }
 
-        if (!communityInfo.userRole) {
-            const subscribeButton = communityCard.querySelector(".subscribe-button");
-            subscribeButton.classList.remove("template");
-        }
-        else if (communityInfo.userRole === "Subscriber") {
-            const unsubscribeButton = communityCard.querySelector(".unsubscribe-button");
-            unsubscribeButton.classList.remove("template");
-        }
+        switch (communityInfo.userRole) {
+            case "Subscriber":
+                const unsubscribeButton = communityCard.querySelector(".unsubscribe-button");
+                unsubscribeButton.classList.remove("template");
+                break;
 
-        if (communityInfo.userRole !== "Administrator") {
-            const writePostLink = communityCard.querySelector(".write-post-link");
-            writePostLink.style.pointerEvents = "none";
+            case "Administrator":
+                const writePostLink = communityCard.querySelector(".write-post-link");
+                writePostLink.classList.remove("disabled");
+
+                writePostLink.addEventListener("click", () => {
+                    window.community = {"id": window.location.pathname.split("/")[2],
+                        name: communityInfo.name};
+                });
+
+                break;
+
+            default:
+                const subscribeButton = communityCard.querySelector(".subscribe-button");
+                subscribeButton.classList.remove("template");
         }
 
         const adminsContainer = communityCard.querySelector(".admins");

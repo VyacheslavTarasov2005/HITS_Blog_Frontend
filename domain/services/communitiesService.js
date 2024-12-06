@@ -57,6 +57,24 @@ const getCommunitiesList = async () => {
     return result;
 }
 
+const getCommunitiesListWithAdminRole = async () => {
+    const communitiesListResponse = await api.get("/community");
+    if (communitiesListResponse.status !== 200) {
+        throw new Error(communitiesListResponse.statusText);
+    }
+
+    let result = [];
+    for (const community of communitiesListResponse.body) {
+        const communityRole = await getUserRole(community.id);
+
+        if (communityRole === "Administrator") {
+            result.push(community);
+        }
+    }
+
+    return result;
+}
+
 const subscribe = async (communityId) => {
     const response = await api.post(`/community/${communityId}/subscribe`);
 
@@ -105,11 +123,21 @@ const getCommunityInfo = async (communityId) => {
         userRole, admins, communityInfoResponse.body.isClosed);
 }
 
+const createPost = async (communityId, request) => {
+    const response = await api.post(`/community/${communityId}/post`, request);
+
+    if (response.status !== 200) {
+        throw new Error(response.statusText);
+    }
+}
+
 export default {
     getUserRole,
     getCommunitiesList,
+    getCommunitiesListWithAdminRole,
     subscribe,
     unsubscribe,
     getCommunityPosts,
-    getCommunityInfo
+    getCommunityInfo,
+    createPost
 }

@@ -2,6 +2,7 @@ import dropdownList from "/presentation/handlers/dropdownList.js";
 import tagsController from "/application/controllers/tagsController.js";
 import mainPostsFiltrationController from "/application/controllers/mainPostsFiltrationController.js";
 import postsView from "../components/postsRenderer.js";
+import writePostLinkController from "/application/controllers/writePostLinkController.js";
 
 let indexView = {
     render: async () => {
@@ -9,6 +10,8 @@ let indexView = {
             await fetch('/presentation/views/templates/indexView.html').then((data) => data.text());
 
         document.title = 'Главная'
+
+        await writePostLinkController();
 
         await postsView.render(document.querySelector("main .main-page"));
 

@@ -6,7 +6,7 @@ let headerView = {
         const nav = header.querySelector("header nav");
         const navLinks = nav.querySelectorAll("a");
 
-        const linksNames = new Map([["/authors", "Авторы"], ["/communities", "Группы"]]);
+        const linksNames = new Map([["/authors", "Авторы"], ["/communities", "Группы"], ["/post/create", "Написать пост"]]);
 
         const addNavLink = (href) => {
             const link = document.createElement("a");
@@ -34,6 +34,10 @@ let headerView = {
         switch (route) {
             case "/":
                 updateHeader(["/authors", "/communities"]);
+                break;
+
+            case "/profile":
+                updateHeader(["/post/create"]);
                 break;
 
             case "/communities":

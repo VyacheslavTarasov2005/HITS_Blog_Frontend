@@ -6,6 +6,7 @@ import profileView from './renderers/templates/profileRenderer.js';
 import communitiesListView from './renderers/templates/communitiesListRenderer.js';
 import authorsView from './renderers/templates/authorsListRenderer.js';
 import communityView from "./renderers/templates/communityRenderer.js";
+import createPostView from './renderers/templates/createPostRenderer.js';
 
 import headerView from "./renderers/components/headerRenderer.js";
 
@@ -28,7 +29,8 @@ const routes = {
     "/profile": profileView,
     "/communities": communitiesListView,
     "/communities/:id": communityView,
-    "/authors": authorsView
+    "/authors": authorsView,
+    "/post/create": createPostView
 };
 
 const getParams = (route, path) => {
