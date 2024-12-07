@@ -1,7 +1,5 @@
 import postsController from "./postsController.js";
 
-let initialized = false;
-
 const paginationController = async (pagination) => {
     const buttonQuantity = 3;
 
@@ -60,39 +58,47 @@ const paginationController = async (pagination) => {
         });
     }
 
-    if (!initialized) {
-        const goBack = document.querySelector(".pagination .back");
+    const goBack = document.querySelector(".pagination .back");
+    if (!goBack.dataset.initialized) {
         goBack.addEventListener("click", async () => {
             const urlParams = new URLSearchParams(window.location.search);
             urlParams.set('page', '1');
             window.history.pushState({}, "", `?${urlParams.toString()}`);
 
+            goBack.dataset.initialized = "true";
+
             await postsController();
         });
+    }
 
+    if (!goForward.dataset.initialized) {
         goForward.addEventListener("click", async () => {
             const urlParams = new URLSearchParams(window.location.search);
             const lastPage = goForward.querySelector("span").textContent;
             urlParams.set('page', lastPage);
             window.history.pushState({}, "", `?${urlParams.toString()}`);
 
+            goForward.dataset.initialized = "true";
+
             await postsController();
         });
+    }
 
-        const quantityDropdownMenu = document.querySelector(".pagination .quantity .dropdown-menu");
-
+    const quantityDropdownMenu = document.querySelector(".pagination .quantity .dropdown-menu");
+    if (!quantityDropdownMenu.dataset.initialized) {
         quantityDropdownMenu.addEventListener("click", async () => {
             const urlParams = new URLSearchParams(window.location.search);
             urlParams.set("page", "1");
             urlParams.set("size", quantityDropdownButton.textContent);
             window.history.pushState({}, "", `?${urlParams.toString()}`);
 
+            quantityDropdownMenu.dataset.initialized = "true";
+
             await postsController();
         });
     }
 
     await updateButtons();
-    initialized = true;
 }
 
 export default paginationController
