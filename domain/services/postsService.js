@@ -19,6 +19,17 @@ const getPosts = async () => {
     }
 }
 
+const getPostById = async (postId) => {
+    const response = await api.get(`/post/${postId}`);
+
+    if (response.status === 200) {
+        return response.body;
+    }
+    else {
+        throw new Error(response.statusText);
+    }
+}
+
 const likePost = async (postId) => {
     const response = await api.post(`/post/${postId}/like`);
 
@@ -38,6 +49,7 @@ const dislikePost = async (postId) => {
 export default {
     createPost,
     getPosts,
+    getPostById,
     likePost,
     dislikePost
 };

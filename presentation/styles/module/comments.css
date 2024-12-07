@@ -1,0 +1,40 @@
+.comments-block {
+    padding: 1%;
+    font-size: 0.7vw;
+}
+
+.comments-block .comments {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+.comments-block .comments .comment {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+    align-self: flex-start;
+    font-size: 0.6vw;
+}
+
+.comments-block .comments .comment .row {
+    display: flex;
+    gap: 0.3em;
+}
+
+.comments-block .comments .comment .text {
+    font-size: 0.7vw;
+}
+
+.comments-block .comments .comment .modified {
+    font-size: 0.6vw;
+    color: rgb(60, 60, 60);
+    align-self: flex-end;
+}
+
+.comments-block .comments .comment button {
+    font-size: 0.6vw;
+    color: #0D6EFD;
+    align-self: flex-start;
+}

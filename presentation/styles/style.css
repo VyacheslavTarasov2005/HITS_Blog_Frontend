@@ -20,6 +20,9 @@
 @import url('module/unsubscribe-button.css');
 @import url('module/avatar.css');
 @import url('module/create-post.css');
+@import url('module/post-details.css');
+@import url('module/comments.css');
+@import url('module/create-comment.css');
 @import url('state/button.css');
 @import url('state/template.css');
 @import url('state/disabled.css');

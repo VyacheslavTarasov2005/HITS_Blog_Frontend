@@ -48,7 +48,8 @@ const postsController = async () => {
                 authorBlock.textContent += ` в сообществе "${post.communityName}"`;
             }
 
-            const titleBlock = postContent.querySelector("h1");
+            const titleBlock = postContent.querySelector(".title");
+            titleBlock.href = `/post/${post.id}`
             titleBlock.textContent = post.title;
 
             const imageBlock = postContent.querySelector("img");
@@ -70,7 +71,17 @@ const postsController = async () => {
 
             const postSubcontainer = postTemplate.querySelector(".subcontainer");
 
-            const commentsQuantity = postSubcontainer.querySelector(".comments-quantity .quantity");
+            const commentsContainer = postTemplate.querySelector(".comments-quantity");
+
+            const commentsIcon = commentsContainer.querySelector(".icon");
+            commentsIcon.addEventListener("click", async (event) => {
+                event.preventDefault();
+
+                window.showComments = "true";
+                await route(`/post/${post.id}`);
+            })
+
+            const commentsQuantity = commentsContainer.querySelector(".quantity");
             commentsQuantity.textContent = post.commentsCount;
 
             const likeContainer = postSubcontainer.querySelector(".like");

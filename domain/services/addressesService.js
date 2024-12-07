@@ -21,6 +21,27 @@ const getAddressByParentIdAndNamePart = async (parentId = null, namePart = null)
     }
 }
 
+const getFullAddressById = async (addressId) => {
+    const queryParams = new URLSearchParams();
+    queryParams.set('objectGuid', addressId);
+
+    const response = await api.get(`/address/chain`, undefined, queryParams);
+
+    if (response.status === 200) {
+        let result = '';
+
+        for (let i = response.body.length - 1; i >= 0; i--) {
+            result += response.body[i].text + ' ';
+        }
+
+        return result;
+    }
+    else {
+        throw new Error(response.statusText);
+    }
+}
+
 export default {
-    getAddressByParentIdAndNamePart
+    getAddressByParentIdAndNamePart,
+    getFullAddressById
 }

@@ -6,11 +6,11 @@
     word-break: break-all;
 }
 
-.posts .post .content {
+.post .content {
     padding: 1%;
 }
 
-.posts .post .content {
+.post .content {
     display: flex;
     flex-direction: column;
     gap: 0.7em;
@@ -18,50 +18,54 @@
     color: rgb(60, 60, 60);
 }
 
-.posts .post .content h1 {
+.post .content a {
+    display: flex;
+    align-self: start;
+    font-size: 1.4vw;
+    font-weight: bold;
     color: black;
 }
 
-.posts .post .content .read-full {
+.post .content .read-full {
     margin-top: 0.7em;
     font-size: 0.7vw;
     color: #0D6EFD;
 }
 
-.posts .post .content img {
+.post .content img {
     align-self: center;
     max-width: 50vw;
     max-height: 50vh;
 }
 
-.posts .post .comments-quantity {
+.post .comments-quantity {
     display: flex;
     gap: 0.3em;
 }
 
-.posts .post .like {
+.post .like {
     display: flex;
     margin-left: auto;
     gap: 0.3em;
 }
 
-.posts .post .like .liked {
+.post .like .liked {
     fill: #DC3545;
     stroke: none;
 }
 
-.posts .post .icon {
+.post .icon {
     display: flex;
     width: 0.7vw;
     height: 0.7vw;
 }
 
-.posts .post .like svg {
+.post .like svg {
     fill: none;
     stroke: black;
     stroke-width: 2;
 }
 
-.posts .post .tags {
+.post .tags {
     color: rgb(120, 120, 120);
 }

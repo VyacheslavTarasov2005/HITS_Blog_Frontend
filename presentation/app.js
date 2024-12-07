@@ -7,6 +7,7 @@ import communitiesListView from './renderers/templates/communitiesListRenderer.j
 import authorsView from './renderers/templates/authorsListRenderer.js';
 import communityView from "./renderers/templates/communityRenderer.js";
 import createPostView from './renderers/templates/createPostRenderer.js';
+import postDetailsView from "./renderers/templates/postDetailsRenderer.js";
 
 import headerView from "./renderers/components/headerRenderer.js";
 
@@ -30,7 +31,8 @@ const routes = {
     "/communities": communitiesListView,
     "/communities/:id": communityView,
     "/authors": authorsView,
-    "/post/create": createPostView
+    "/post/create": createPostView,
+    "/post/:id": postDetailsView
 };
 
 const getParams = (route, path) => {
@@ -52,18 +54,22 @@ const getParams = (route, path) => {
 const handleLocation = async () => {
     const path = window.location.pathname;
 
-    let matchedRoute = null;
-    let matchedParams = {};
+    let route = routes[path];
+    let matchedRoute = path;
+    if (!route) {
+        let matchedParams = {};
 
-    Object.keys(routes).forEach(route => {
-        const routeRegex = new RegExp(`^${route.replace(/:\w+/g, '[^/]+')}$`);
-        if (routeRegex.test(path)) {
-            matchedRoute = route;
-            matchedParams = getParams(route, path);
-        }
-    });
+        Object.keys(routes).forEach(route => {
+            const routeRegex = new RegExp(`^${route.replace(/:\w+/g, '[^/]+')}$`);
+            if (routeRegex.test(path)) {
+                matchedRoute = route;
+                matchedParams = getParams(route, path);
+            }
+        });
 
-    const route = routes[matchedRoute] || routes[404];
+        route = routes[matchedRoute] || routes[404];
+    }
+
     await headerView.render(matchedRoute);
     await route.render();
     updateLinks();
