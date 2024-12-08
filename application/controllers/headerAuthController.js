@@ -42,6 +42,7 @@ const headerAuthController = async () => {
                 const user = await userService.getUser();
                 emailBlock.textContent = user.email;
                 localStorage.setItem("email", user.email);
+                localStorage.setItem("userId", user.id);
             }
             catch (error) {
                 renderLoginLink();

@@ -4,6 +4,7 @@ import likeController from "./likeController.js";
 import dateConverter from "../converters/dateConverter.js";
 import commentsService from "/domain/services/commentsService.js";
 import createCommentRequest from "/data/DTOs/createCommentRequest.js";
+import DateConverter from "../converters/dateConverter.js";
 
 const postDetailsController = async (context) => {
     try {
@@ -78,7 +79,7 @@ const postDetailsController = async (context) => {
                 commentContainer.scrollIntoView({
                     behavior: "smooth",
                 });
-                
+
                 delete window.showComments;
             }
 
@@ -94,6 +95,7 @@ const postDetailsController = async (context) => {
                 if (comment.modifiedDate) {
                     const modified = commentTemplate.querySelector(".modified");
                     modified.classList.remove("template");
+                    modified.dataset.modifiedDate = dateConverter.convertFrom(comment.modifiedDate, true);
                 }
 
                 const date = commentTemplate.querySelector(".date");
@@ -101,6 +103,59 @@ const postDetailsController = async (context) => {
 
                 if (comment.subComments) {
                     const showRepliesButton = commentTemplate.querySelector(".show-replies");
+
+                    showRepliesButton.addEventListener("click", async () => {
+                        try {
+                            showRepliesButton.classList.add("template");
+                            const replies = await commentsService.getReplies(comment.id);
+
+                            const repliesBlock = commentTemplate.querySelector(".replies");
+                            repliesBlock.classList.remove("template");
+
+                            replies.forEach(reply => {
+                               const replyTemplate =  repliesBlock.children[0].cloneNode(true);
+
+                               const author = replyTemplate.querySelector(".author");
+                               const text = replyTemplate.querySelector(".text");
+
+                               if (reply.deleteDate) {
+                                   author.textContent = "[Комментарий удален]"
+                                   author.classList.add("deleted");
+                                   author.dataset.deleteDate = dateConverter.convertFrom(comment.deleteDate,
+                                       true)
+
+                                   text.textContent = "[Комментарий удален]"
+                                   text.classList.add("deleted");
+                                   text.dataset.deleteDate = dateConverter.convertFrom(comment.deleteDate,
+                                       true)
+                               }
+                               else {
+                                   author.textContent = reply.author;
+
+                                   text.textContent = reply.content;
+
+                                   if (comment.modifiedDate) {
+                                       const modified = replyTemplate.querySelector(".modified");
+                                       modified.classList.remove("template");
+                                       modified.dataset.modifiedDate = dateConverter.convertFrom(comment.modifiedDate,
+                                           true);
+                                   }
+                               }
+
+                                const date = replyTemplate.querySelector(".date");
+                                date.textContent = DateConverter.convertFrom(reply.createTime, true);
+
+                                replyTemplate.classList.remove("template");
+
+                                repliesBlock.appendChild(replyTemplate);
+                            });
+                        }
+                        catch (error) {
+                            alert("Не удалось загрузить ответы");
+                            console.error(error);
+                        }
+                    });
+
                     showRepliesButton.classList.remove("template");
                 }
 
