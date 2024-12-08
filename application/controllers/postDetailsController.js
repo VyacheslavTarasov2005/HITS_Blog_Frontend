@@ -5,6 +5,9 @@ import dateConverter from "../converters/dateConverter.js";
 import commentsService from "/domain/services/commentsService.js";
 import createCommentRequest from "/data/DTOs/createCommentRequest.js";
 import DateConverter from "../converters/dateConverter.js";
+import deleteCommentButtonController from "./deleteCommentButtonController.js";
+import editCommentButtonController from "./editCommentButtonController.js";
+import replyButtonController from "./replyButtonController.js";
 
 const postDetailsController = async (context) => {
     try {
@@ -83,8 +86,9 @@ const postDetailsController = async (context) => {
                 delete window.showComments;
             }
 
-            details.comments.forEach(comment => {
+            for (const comment of details.comments) {
                 const commentTemplate = commentContainer.children[0].cloneNode(true);
+                commentTemplate.id = comment.id;
 
                 const author = commentTemplate.querySelector(".author")
                 author.textContent = comment.author;
@@ -112,8 +116,10 @@ const postDetailsController = async (context) => {
                             const repliesBlock = commentTemplate.querySelector(".replies");
                             repliesBlock.classList.remove("template");
 
-                            replies.forEach(reply => {
+                            for (const reply of replies) {
                                const replyTemplate =  repliesBlock.children[0].cloneNode(true);
+
+                               replyTemplate.id = reply.id;
 
                                const author = replyTemplate.querySelector(".author");
                                const text = replyTemplate.querySelector(".text");
@@ -132,6 +138,16 @@ const postDetailsController = async (context) => {
                                else {
                                    author.textContent = reply.author;
 
+                                   if (reply.isMine) {
+                                       const editButton = replyTemplate.querySelector(".edit");
+                                       editButton.classList.remove("template");
+                                       await editCommentButtonController(replyTemplate);
+
+                                       const deleteButton = replyTemplate.querySelector(".delete");
+                                       deleteButton.classList.remove("template");
+                                       await deleteCommentButtonController(replyTemplate);
+                                   }
+
                                    text.textContent = reply.content;
 
                                    if (comment.modifiedDate) {
@@ -148,7 +164,9 @@ const postDetailsController = async (context) => {
                                 replyTemplate.classList.remove("template");
 
                                 repliesBlock.appendChild(replyTemplate);
-                            });
+
+                                await replyButtonController(replyTemplate, details.id);
+                            }
                         }
                         catch (error) {
                             alert("Не удалось загрузить ответы");
@@ -162,7 +180,19 @@ const postDetailsController = async (context) => {
                 commentTemplate.classList.remove("template");
 
                 commentContainer.appendChild(commentTemplate);
-            });
+
+                if (comment.authorId === localStorage.getItem("userId")) {
+                    const editButton = commentTemplate.querySelector(".edit");
+                    editButton.classList.remove("template");
+                    await editCommentButtonController(commentTemplate);
+
+                    const deleteButton = commentTemplate.querySelector(".delete");
+                    deleteButton.classList.remove("template");
+                    await deleteCommentButtonController(commentTemplate);
+                }
+
+                await replyButtonController(commentTemplate, details.id);
+            }
         }
 
         const creteCommentForm = context.querySelector(".create-comment-block form");

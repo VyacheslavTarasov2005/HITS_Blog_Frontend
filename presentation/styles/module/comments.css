@@ -19,6 +19,7 @@
     flex-direction: column;
     gap: 0.7em;
     align-self: flex-start;
+    width: 100%;
     font-size: 0.6vw;
 }
 
@@ -57,7 +58,7 @@
     display: flex;
     flex-direction: column;
     margin-left: 0.3em;
-    padding: 2%;
+    padding: 1em;
     border-left: 3px solid #99CCFF;
     gap: 1em;
 }
@@ -71,6 +72,7 @@
 .comments-block .comments .comment .replies .reply .deleted {
     position: relative;
     cursor: default;
+    text-wrap: nowrap;
 }
 
 .comments-block .comments .comment .replies .reply .deleted:hover::after {
@@ -79,4 +81,51 @@
     left: 110%;
     text-wrap: nowrap;
     font-size: 0.6vw;
+}
+
+.comments-block .comments .icon svg {
+    width: 0.7vw;
+    height: 0.7vw;
+}
+
+.comments-block .comments .edit svg {
+    fill: #FFC107;
+}
+
+.comments-block .comments .delete svg {
+    fill: #DC3545;
+}
+
+.comments-block .comments .edit-comment {
+    width: 100%;
+}
+
+.comments-block .comments form input {
+    padding: 0.7em;
+    width: 85%;
+    font-size: 0.7vw;
+}
+
+.comments-block .comments form button {
+    padding: 0.7em;
+    border: #E5E8E9 1px solid;
+    border-radius: 5px;
+    font-size: 0.7vw;
+    margin-left: auto;
+}
+
+.comments-block .comments .edit-comment form button {
+    background-color: #FFC107;
+    color: black;
+    font-size: 0.7vw;
+}
+
+.comments-block .comments .write-reply {
+    width: 100%;
+}
+
+.comments-block .comments .write-reply form button {
+    background-color: #0D6EFD;
+    color: white;
+    font-size: 0.7vw;
 }

@@ -43,26 +43,82 @@
         <p class="no-comments">Нет комментариев</p>
         <div class="comments template">
             <div class="comment template">
-                <p class="author"></p>
                 <div class="row">
+                    <p class="author"></p>
+                    <button class="icon edit template">
+                        <svg height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xml:space="preserve">
+                            <path d="M70.2,337.4l104.4,104.4L441.5,175L337,70.5L70.2,337.4z M0.6,499.8c-2.3,9.3,2.3,13.9,11.6,11.6L151.4,465L47,360.6 L0.6,499.8z M487.9,24.1c-46.3-46.4-92.8-11.6-92.8-11.6c-7.6,5.8-34.8,34.8-34.8,34.8l104.4,104.4c0,0,28.9-27.2,34.8-34.8 C499.5,116.9,534.3,70.6,487.9,24.1z"/>
+                        </svg>
+                    </button>
+                    <button class="icon delete template">
+                        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#000000" class="bi bi-trash-fill">
+                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="row content">
                     <p class="text"></p>
                     <span class="modified template">(изменен)</span>
+                </div>
+                <div class="edit-comment template">
+                    <form>
+                        <div class="row">
+                            <input class="container">
+                            <button type="submit">Редактировать</button>
+                        </div>
+                    </form>
                 </div>
                 <div class="row">
                     <p class="date"></p>
                     <button class="reply-button">Ответить</button>
                 </div>
+                <div class="write-reply template">
+                    <form>
+                        <div class="row">
+                            <input class="container">
+                            <button type="submit">Отправить</button>
+                        </div>
+                    </form>
+                </div>
                 <button class="show-replies template">Раскрыть ответы</button>
                 <div class="replies template">
                     <div class="reply template">
-                        <p class="author"></p>
                         <div class="row">
-                            <p class="text">text text text</p>
+                            <p class="author"></p>
+                            <button class="icon edit template">
+                                <svg height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xml:space="preserve">
+                                    <path d="M70.2,337.4l104.4,104.4L441.5,175L337,70.5L70.2,337.4z M0.6,499.8c-2.3,9.3,2.3,13.9,11.6,11.6L151.4,465L47,360.6 L0.6,499.8z M487.9,24.1c-46.3-46.4-92.8-11.6-92.8-11.6c-7.6,5.8-34.8,34.8-34.8,34.8l104.4,104.4c0,0,28.9-27.2,34.8-34.8 C499.5,116.9,534.3,70.6,487.9,24.1z"/>
+                                </svg>
+                            </button>
+                            <button class="icon delete template">
+                                <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#000000" class="bi bi-trash-fill">
+                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="row content">
+                            <p class="text"></p>
                             <span class="modified template">(изменен)</span>
+                        </div>
+                        <div class="edit-comment template">
+                            <form>
+                                <div class="row">
+                                    <input class="container">
+                                    <button type="submit">Редактировать</button>
+                                </div>
+                            </form>
                         </div>
                         <div class="row">
                             <p class="date">14.10.1984 11:11</p>
                             <button class="reply-button">Ответить</button>
+                        </div>
+                        <div class="write-reply template">
+                            <form>
+                                <div class="row">
+                                    <input class="container">
+                                    <button type="submit">Отправить</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -36,6 +36,7 @@ const logoutUser = async () => {
     if (response.status === 200 || response.status === 401) {
         tokenService.removeToken();
         localStorage.removeItem("email");
+        localStorage.removeItem("userId");
     }
     else {
         throw new Error(response.statusText);

@@ -31,7 +31,25 @@ const getReplies = async (commentId) => {
     }
 }
 
+const deleteComment = async (commentId) => {
+    const response = await api.delete(`/comment/${commentId}`);
+
+    if (response.status !== 200) {
+        throw new Error(response.statusText);
+    }
+}
+
+const editComment = async (commentId, request) => {
+    const response = await api.put(`/comment/${commentId}`, request);
+
+    if (response.status !== 200) {
+        throw new Error(response.statusText);
+    }
+}
+
 export default {
     createComment,
-    getReplies
+    getReplies,
+    deleteComment,
+    editComment
 }
