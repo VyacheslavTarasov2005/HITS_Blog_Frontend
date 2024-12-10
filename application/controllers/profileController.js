@@ -2,13 +2,17 @@ import userService from "/domain/services/userService.js";
 import genderConverter from "../converters/genderConverter.js";
 import dateConverter from "../converters/dateConverter.js";
 import editUserRequest from "/data/DTOs/editUserRequest.js";
+import phoneNumberInputHandler from "/presentation/handlers/phoneNumberInputHandler.js";
 
 const profileController = async () => {
     const form = document.querySelector('form');
 
     const email = document.querySelector('input[type="email"]');
     const fullName = document.querySelector('input[name="fullName"]');
+
     const phoneNumber = document.querySelector('input[name="phoneNumber"]');
+    phoneNumberInputHandler(phoneNumber);
+
     const gender = form.querySelector(".dropdown-button");
     const birthDate = document.querySelector('input[name="birthDate"]');
 
