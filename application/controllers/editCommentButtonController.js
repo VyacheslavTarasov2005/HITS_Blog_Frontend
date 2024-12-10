@@ -27,10 +27,6 @@ const editCommentButtonController = async (comment, postId, rootComment = null) 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        if (textInput.value === "") {
-            return;
-        }
-
         const request = new editCommentRequest(textInput.value);
 
         try {

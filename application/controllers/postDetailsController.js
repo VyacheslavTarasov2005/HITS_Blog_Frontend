@@ -3,7 +3,7 @@ import addressesService from "/domain/services/addressesService.js";
 import likeController from "./likeController.js";
 import commentsService from "/domain/services/commentsService.js";
 import createCommentRequest from "/data/DTOs/createCommentRequest.js";
-import commentsController from "./commentsController";
+import commentsController from "./commentsController.js";
 
 const postDetailsController = async (context) => {
     try {
@@ -78,17 +78,15 @@ const postDetailsController = async (context) => {
 
             const commentText = creteCommentForm.querySelector("textarea");
 
-            if (commentText.value) {
-                const request = new createCommentRequest(commentText.value, null);
-                try {
-                    await commentsService.createComment(details.id, request);
-                    await commentsController(details.id);
-                    commentText.value = '';
-                }
-                catch (error) {
-                    alert("Не удалось создать комментарий");
-                    console.error(error);
-                }
+            const request = new createCommentRequest(commentText.value, null);
+            try {
+                await commentsService.createComment(details.id, request);
+                await commentsController(details.id);
+                commentText.value = '';
+            }
+            catch (error) {
+                alert("Не удалось создать комментарий");
+                console.error(error);
             }
         })
     }

@@ -25,7 +25,12 @@
                     </div>
                     <div>
                         <p>Время чтения от</p>
-                        <input type="text" name="readTimeFrom">
+                        <input
+                                type="text"
+                                name="readTimeFrom"
+                                pattern="\d+"
+                                title="В данном поле допустимы только цифры"
+                        >
                     </div>
                 </div>
             </div>
@@ -39,7 +44,12 @@
                 <div class="inline-input">
                     <div>
                         <p>Время чтения до</p>
-                        <input type="text" name="readTimeTo">
+                        <input
+                                type="text"
+                                name="readTimeTo"
+                                pattern="\d+"
+                                title="В данном поле допустимы только цифры"
+                        >
                     </div>
                     <div class="checkbox-block">
                         <input type="checkbox">

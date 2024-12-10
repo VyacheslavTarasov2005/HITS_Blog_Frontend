@@ -4,11 +4,17 @@
         <div class="row">
             <div class="name-input">
                 <p>Название</p>
-                <input type="text" name="title">
+                <input type="text" name="title" required>
             </div>
             <div class="read-time-input">
                 <p>Время чтения</p>
-                <input type="text" name="readTime">
+                <input
+                        type="text"
+                        name="readTime"
+                        pattern="\d+"
+                        title="В данном поле допустимы только цифры"
+                        required
+                >
             </div>
         </div>
         <div class="row">
@@ -23,7 +29,7 @@
             </div>
             <div class="tags-selector">
                 <p>Тэги</p>
-                <select name="tags" size="3" multiple>
+                <select name="tags" size="3" multiple required>
                     <option style="display: none"></option>
                 </select>
             </div>
@@ -34,7 +40,7 @@
         </div>
         <div>
             <p>Текст</p>
-            <textarea name="body" rows="10" class="container"></textarea>
+            <textarea name="body" rows="10" class="container" required></textarea>
         </div>
         <div>
             <h2>Адрес</h2>
