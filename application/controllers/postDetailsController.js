@@ -1,13 +1,9 @@
 import postsService from "/domain/services/postsService.js";
 import addressesService from "/domain/services/addressesService.js";
 import likeController from "./likeController.js";
-import dateConverter from "../converters/dateConverter.js";
 import commentsService from "/domain/services/commentsService.js";
 import createCommentRequest from "/data/DTOs/createCommentRequest.js";
-import DateConverter from "../converters/dateConverter.js";
-import deleteCommentButtonController from "./deleteCommentButtonController.js";
-import editCommentButtonController from "./editCommentButtonController.js";
-import replyButtonController from "./replyButtonController.js";
+import commentsController from "./commentsController";
 
 const postDetailsController = async (context) => {
     try {
@@ -21,7 +17,7 @@ const postDetailsController = async (context) => {
 
         const author = postContent.querySelector(".author");
         author.textContent = details.author;
-        author.textContent += ` - ${dateConverter.convertFrom(details.createTime, true)}`;
+        author.textContent += ` - ${details.createTime}`;
         if (details.communityName) {
             author.textContent += ` в сообществе "${details.communityName}"`;
         }
@@ -72,127 +68,7 @@ const postDetailsController = async (context) => {
         await likeController(details.id);
 
         if (details.commentsCount > 0) {
-            const noComments = context.querySelector(".comments-block .no-comments");
-            noComments.classList.add("template");
-
-            const commentContainer = context.querySelector(".comments");
-            commentContainer.classList.remove("template");
-
-            if (window.showComments) {
-                commentContainer.scrollIntoView({
-                    behavior: "smooth",
-                });
-
-                delete window.showComments;
-            }
-
-            for (const comment of details.comments) {
-                const commentTemplate = commentContainer.children[0].cloneNode(true);
-                commentTemplate.id = comment.id;
-
-                const author = commentTemplate.querySelector(".author")
-                author.textContent = comment.author;
-
-                const text = commentTemplate.querySelector(".text")
-                text.textContent = comment.content;
-
-                if (comment.modifiedDate) {
-                    const modified = commentTemplate.querySelector(".modified");
-                    modified.classList.remove("template");
-                    modified.dataset.modifiedDate = dateConverter.convertFrom(comment.modifiedDate, true);
-                }
-
-                const date = commentTemplate.querySelector(".date");
-                date.textContent = dateConverter.convertFrom(comment.createTime, true);
-
-                if (comment.subComments) {
-                    const showRepliesButton = commentTemplate.querySelector(".show-replies");
-
-                    showRepliesButton.addEventListener("click", async () => {
-                        try {
-                            showRepliesButton.classList.add("template");
-                            const replies = await commentsService.getReplies(comment.id);
-
-                            const repliesBlock = commentTemplate.querySelector(".replies");
-                            repliesBlock.classList.remove("template");
-
-                            for (const reply of replies) {
-                               const replyTemplate =  repliesBlock.children[0].cloneNode(true);
-
-                               replyTemplate.id = reply.id;
-
-                               const author = replyTemplate.querySelector(".author");
-                               const text = replyTemplate.querySelector(".text");
-
-                               if (reply.deleteDate) {
-                                   author.textContent = "[Комментарий удален]"
-                                   author.classList.add("deleted");
-                                   author.dataset.deleteDate = dateConverter.convertFrom(comment.deleteDate,
-                                       true)
-
-                                   text.textContent = "[Комментарий удален]"
-                                   text.classList.add("deleted");
-                                   text.dataset.deleteDate = dateConverter.convertFrom(comment.deleteDate,
-                                       true)
-                               }
-                               else {
-                                   author.textContent = reply.author;
-
-                                   if (reply.isMine) {
-                                       const editButton = replyTemplate.querySelector(".edit");
-                                       editButton.classList.remove("template");
-                                       await editCommentButtonController(replyTemplate);
-
-                                       const deleteButton = replyTemplate.querySelector(".delete");
-                                       deleteButton.classList.remove("template");
-                                       await deleteCommentButtonController(replyTemplate);
-                                   }
-
-                                   text.textContent = reply.content;
-
-                                   if (comment.modifiedDate) {
-                                       const modified = replyTemplate.querySelector(".modified");
-                                       modified.classList.remove("template");
-                                       modified.dataset.modifiedDate = dateConverter.convertFrom(comment.modifiedDate,
-                                           true);
-                                   }
-                               }
-
-                                const date = replyTemplate.querySelector(".date");
-                                date.textContent = DateConverter.convertFrom(reply.createTime, true);
-
-                                replyTemplate.classList.remove("template");
-
-                                repliesBlock.appendChild(replyTemplate);
-
-                                await replyButtonController(replyTemplate, details.id);
-                            }
-                        }
-                        catch (error) {
-                            alert("Не удалось загрузить ответы");
-                            console.error(error);
-                        }
-                    });
-
-                    showRepliesButton.classList.remove("template");
-                }
-
-                commentTemplate.classList.remove("template");
-
-                commentContainer.appendChild(commentTemplate);
-
-                if (comment.authorId === localStorage.getItem("userId")) {
-                    const editButton = commentTemplate.querySelector(".edit");
-                    editButton.classList.remove("template");
-                    await editCommentButtonController(commentTemplate);
-
-                    const deleteButton = commentTemplate.querySelector(".delete");
-                    deleteButton.classList.remove("template");
-                    await deleteCommentButtonController(commentTemplate);
-                }
-
-                await replyButtonController(commentTemplate, details.id);
-            }
+            await commentsController(details.id, details.comments);
         }
 
         const creteCommentForm = context.querySelector(".create-comment-block form");
@@ -203,9 +79,11 @@ const postDetailsController = async (context) => {
             const commentText = creteCommentForm.querySelector("textarea");
 
             if (commentText.value) {
+                const request = new createCommentRequest(commentText.value, null);
                 try {
-                    const request = new createCommentRequest(commentText.value, null);
                     await commentsService.createComment(details.id, request);
+                    await commentsController(details.id);
+                    commentText.value = '';
                 }
                 catch (error) {
                     alert("Не удалось создать комментарий");

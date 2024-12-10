@@ -1,7 +1,9 @@
 import commentsService from "/domain/services/commentsService.js";
 import editCommentRequest from "/data/DTOs/editCommentRequest.js";
+import repliesController from "./repliesController.js";
+import commentsController from "./commentsController.js";
 
-const editCommentButtonController = async (comment) => {
+const editCommentButtonController = async (comment, postId, rootComment = null) => {
     const commentContent = comment.querySelector(".content");
 
     const editCommentBlock = comment.querySelector(".edit-comment");
@@ -34,10 +36,12 @@ const editCommentButtonController = async (comment) => {
         try {
             await commentsService.editComment(comment.id, request);
 
-            commentText.textContent = textInput.value;
-
-            editCommentBlock.classList.add("template");
-            commentContent.classList.remove("template");
+            if (rootComment) {
+                await repliesController(rootComment, postId);
+            }
+            else {
+                await commentsController(postId);
+            }
         }
         catch (error) {
             alert("Не удалось изменить комментарий");

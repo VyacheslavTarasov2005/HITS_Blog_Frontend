@@ -1,7 +1,8 @@
 import createCommentRequest from "/data/DTOs/createCommentRequest.js";
 import commentsService from "/domain/services/commentsService.js";
+import repliesController from "./repliesController";
 
-const replyButtonController = async (comment, postId) => {
+const replyButtonController = async (comment, postId, rootCommentId = null) => {
     const replyButton = comment.querySelector(".reply-button");
     const replyBlock = comment.querySelector(".write-reply");
 
@@ -21,6 +22,16 @@ const replyButtonController = async (comment, postId) => {
             await commentsService.createComment(postId, request);
             replyBlock.classList.add("template");
             text.value = "";
+
+            let rootComment;
+            if (rootCommentId) {
+                rootComment = document.getElementById(rootCommentId);
+            }
+            else {
+                rootComment = comment;
+            }
+
+            await repliesController(rootComment, postId);
         }
         catch (error) {
             alert("Не удалось создать ответ");

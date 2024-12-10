@@ -1,4 +1,8 @@
 import api from "/data/api.js";
+import postDetailsEntity from "../entities/postDetailsEntity.js";
+import commentEntity from "../entities/commentEntity.js";
+import dateConverter from "/application/converters/dateConverter.js";
+import addressesService from "./addressesService.js";
 
 const createPost = async (request) => {
     const response = await api.post("/post", request);
@@ -23,7 +27,33 @@ const getPostById = async (postId) => {
     const response = await api.get(`/post/${postId}`);
 
     if (response.status === 200) {
-        return response.body;
+        let result;
+
+        let comments = [];
+        response.body.comments.forEach((comment) => {
+            const userId = localStorage.getItem("userId");
+
+            const commentResult = new commentEntity(comment.id,
+                dateConverter.convertFrom(comment.createTime, true), comment.content,
+                comment.modifiedDate ? dateConverter.convertFrom(comment.modifiedDate, true) : null,
+                comment.deleteDate ? dateConverter.convertFrom(comment.deleteDate, true) : null,
+                comment.author, comment.authorId === userId, comment.subComments);
+
+            comments.push(commentResult);
+        });
+
+        let address = null;
+        if (response.body.addressId) {
+            address = await addressesService.getFullAddressById(response.body.addressId);
+        }
+
+        result = new postDetailsEntity(response.body.id, dateConverter.convertFrom(response.body.createTime),
+            response.body.title, response.body.description,
+            dateConverter.convertFrom(response.body.readingTime, true), response.body.image,
+            response.body.author, response.body.communityName, address, response.body.likes, response.body.hasLike,
+            response.body.commentsCount, response.body.tags, comments);
+
+        return result;
     }
     else {
         throw new Error(response.statusText);
