@@ -1,5 +1,14 @@
 const phoneNumberInputHandler = (input) => {
-    input.addEventListener('input', () => {
+    input.addEventListener('input', (event) => {
+        if (event.inputType === "deleteContentBackward" && input.value.length <= 2) {
+            input.value = "";
+            return;
+        }
+
+        if (input.value === '+' || input.value === '+7') {
+            return;
+        }
+
         let phone = input.value.replace(/\D/g, '');
 
         if (phone.length > 11) {
