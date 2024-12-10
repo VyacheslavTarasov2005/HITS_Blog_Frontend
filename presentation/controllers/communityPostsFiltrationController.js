@@ -1,4 +1,4 @@
-import sortingConverter from "../converters/sortingConverter.js";
+import sortingConverter from "/application/converters/sortingConverter.js";
 import postsController from "./postsController.js";
 
 const communityPostsFiltrationController = async () => {

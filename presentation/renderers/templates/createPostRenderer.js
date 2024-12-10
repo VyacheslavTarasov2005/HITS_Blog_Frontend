@@ -1,5 +1,5 @@
-import createPostController from "/application/controllers/createPostController.js";
-import tagsController from "/application/controllers/tagsController.js";
+import createPostController from "/presentation/controllers/createPostController.js";
+import tagsController from "/presentation/controllers/tagsController.js";
 import dropdownList from "../../handlers/dropdownList.js";
 
 let createPostRenderer = {

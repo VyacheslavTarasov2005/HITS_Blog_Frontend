@@ -1,4 +1,4 @@
-import loginController from "/application/controllers/loginController.js";
+import loginController from "/presentation/controllers/loginController.js";
 
 let loginView = {
     render: async () => {

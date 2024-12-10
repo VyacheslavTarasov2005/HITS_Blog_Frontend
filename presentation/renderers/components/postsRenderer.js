@@ -1,5 +1,5 @@
 import paginationView from "./paginationRenderer.js";
-import postsController from "/application/controllers/postsController.js";
+import postsController from "/presentation/controllers/postsController.js";
 
 let postsView = {
     render: async (content) => {

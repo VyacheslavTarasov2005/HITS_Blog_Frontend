@@ -1,4 +1,4 @@
-import profileController from "/application/controllers/profileController.js";
+import profileController from "/presentation/controllers/profileController.js";
 import dropdownList from "/presentation/handlers/dropdownList.js";
 
 let profileRenderer = {

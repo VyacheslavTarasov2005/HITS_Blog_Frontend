@@ -1,7 +1,7 @@
-import postsService from "/domain/services/postsService.js";
-import communitiesService from "/domain/services/communitiesService.js";
+import postsService from "/application/services/postsService.js";
+import communitiesService from "/application/services/communitiesService.js";
 import likeController from "./likeController.js";
-import dateConverter from "../converters/dateConverter.js";
+import dateConverter from "/application/converters/dateConverter.js";
 import readFullHandler from "/presentation/handlers/readFullHandler.js";
 import paginationController from "./paginationController.js";
 

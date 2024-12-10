@@ -1,8 +1,8 @@
 import dropdownList from "/presentation/handlers/dropdownList.js";
-import tagsController from "/application/controllers/tagsController.js";
-import mainPostsFiltrationController from "/application/controllers/mainPostsFiltrationController.js";
+import tagsController from "/presentation/controllers/tagsController.js";
+import mainPostsFiltrationController from "/presentation/controllers/mainPostsFiltrationController.js";
 import postsView from "../components/postsRenderer.js";
-import writePostLinkController from "/application/controllers/writePostLinkController.js";
+import writePostLinkController from "/presentation/controllers/writePostLinkController.js";
 
 let indexView = {
     render: async () => {

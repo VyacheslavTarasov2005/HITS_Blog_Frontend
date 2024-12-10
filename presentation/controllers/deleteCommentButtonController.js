@@ -1,4 +1,4 @@
-import commentsService from "/domain/services/commentsService.js";
+import commentsService from "/application/services/commentsService.js";
 import repliesController from "./repliesController.js";
 
 const deleteCommentButtonController = async (comment, postId = null, rootComment = null) => {

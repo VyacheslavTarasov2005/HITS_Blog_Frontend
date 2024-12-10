@@ -1,6 +1,6 @@
-import userService from "/domain/services/userService.js";
-import genderConverter from "../converters/genderConverter.js";
-import dateConverter from "../converters/dateConverter.js";
+import userService from "/application/services/userService.js";
+import genderConverter from "/application/converters/genderConverter.js";
+import dateConverter from "/application/converters/dateConverter.js";
 import editUserRequest from "/data/DTOs/editUserRequest.js";
 import phoneNumberInputHandler from "/presentation/handlers/phoneNumberInputHandler.js";
 

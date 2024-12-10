@@ -1,4 +1,4 @@
-import communitiesService from "/domain/services/communitiesService.js";
+import communitiesService from "/application/services/communitiesService.js";
 import subscribeButtonController from "./subscribeButtonController.js";
 import unsubscribeButtonController from "./unsubscribeButtonController.js";
 

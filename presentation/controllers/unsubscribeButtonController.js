@@ -1,4 +1,4 @@
-import communitiesService from "/domain/services/communitiesService.js";
+import communitiesService from "/application/services/communitiesService.js";
 
 const unsubscribeButtonController = async (communityBlock) => {
     const unsubscribeButton = communityBlock.querySelector(".unsubscribe-button");

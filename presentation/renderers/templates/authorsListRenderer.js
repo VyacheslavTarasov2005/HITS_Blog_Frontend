@@ -1,4 +1,4 @@
-import authorsListController from "/application/controllers/authorsListController.js";
+import authorsListController from "/presentation/controllers/authorsListController.js";
 
 let authorsListRenderer =  {
     render: async () => {

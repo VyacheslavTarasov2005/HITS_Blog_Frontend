@@ -1,4 +1,4 @@
-import commentsService from "/domain/services/commentsService.js";
+import commentsService from "/application/services/commentsService.js";
 import editCommentRequest from "/data/DTOs/editCommentRequest.js";
 import repliesController from "./repliesController.js";
 import commentsController from "./commentsController.js";

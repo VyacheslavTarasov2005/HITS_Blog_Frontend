@@ -1,4 +1,4 @@
-import userService from "/domain/services/userService.js";
+import userService from "/application/services/userService.js";
 import loginUserRequest from "/data/DTOs/loginUserRequest.js";
 
 const loginController = (form) => {

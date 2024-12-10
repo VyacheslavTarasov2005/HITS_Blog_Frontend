@@ -1,4 +1,4 @@
-import communitiesListController from "/application/controllers/communitiesListController.js";
+import communitiesListController from "/presentation/controllers/communitiesListController.js";
 
 let communitiesListRenderer = {
     render: async () => {

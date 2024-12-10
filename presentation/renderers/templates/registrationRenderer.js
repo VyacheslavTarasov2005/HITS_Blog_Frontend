@@ -1,5 +1,5 @@
 import dropdownList from "/presentation/handlers/dropdownList.js";
-import registrationController from "/application/controllers/registrationController.js";
+import registrationController from "/presentation/controllers/registrationController.js";
 
 let registrationView = {
     render: async () => {

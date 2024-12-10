@@ -1,6 +1,6 @@
 import createCommentRequest from "/data/DTOs/createCommentRequest.js";
-import commentsService from "/domain/services/commentsService.js";
-import repliesController from "./repliesController";
+import commentsService from "/application/services/commentsService.js";
+import repliesController from "./repliesController.js";
 
 const replyButtonController = async (comment, postId, rootCommentId = null) => {
     const replyButton = comment.querySelector(".reply-button");

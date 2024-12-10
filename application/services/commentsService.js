@@ -1,7 +1,7 @@
 import api from "/data/api.js";
-import commentEntity from "../entities/commentEntity.js";
-import DateConverter from "../../application/converters/dateConverter";
-import dateConverter from "../../application/converters/dateConverter";
+import commentEntity from "/domain/entities/commentEntity.js";
+import DateConverter from "../converters/dateConverter";
+import dateConverter from "../converters/dateConverter";
 
 const createComment = async (postId, request) => {
     const response = await api.post(`/post/${postId}/comment`, request);

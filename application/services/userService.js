@@ -1,11 +1,11 @@
 import api from "/data/api.js";
-import tokenService from "/data/tokenService.js";
+import tokenRepository from "/data/tokenRepository.js";
 
 const registerUser = async (registerUserRequest) => {
     const response = await api.post("/account/register", registerUserRequest);
 
     if (response.status === 200) {
-        tokenService.setToken(response.body.token);
+        tokenRepository.setToken(response.body.token);
 
         const lsEmail = localStorage.getItem("email");
 
@@ -22,7 +22,7 @@ const loginUser = async (loginUserRequset) => {
     const response = await api.post("/account/login", loginUserRequset);
 
     if (response.status === 200) {
-        tokenService.setToken(response.body.token);
+        tokenRepository.setToken(response.body.token);
         localStorage.removeItem("email");
     }
     else {
@@ -34,7 +34,7 @@ const logoutUser = async () => {
     const response = await api.post("/account/logout");
 
     if (response.status === 200 || response.status === 401) {
-        tokenService.removeToken();
+        tokenRepository.removeToken();
         localStorage.removeItem("email");
         localStorage.removeItem("userId");
     }

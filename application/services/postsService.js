@@ -1,6 +1,6 @@
 import api from "/data/api.js";
-import postDetailsEntity from "../entities/postDetailsEntity.js";
-import commentEntity from "../entities/commentEntity.js";
+import postDetailsEntity from "/domain/entities/postDetailsEntity.js";
+import commentEntity from "/domain/entities/commentEntity.js";
 import dateConverter from "/application/converters/dateConverter.js";
 import addressesService from "./addressesService.js";
 
@@ -48,8 +48,7 @@ const getPostById = async (postId) => {
         }
 
         result = new postDetailsEntity(response.body.id, dateConverter.convertFrom(response.body.createTime),
-            response.body.title, response.body.description,
-            dateConverter.convertFrom(response.body.readingTime, true), response.body.image,
+            response.body.title, response.body.description, response.body.readingTime, response.body.image,
             response.body.author, response.body.communityName, address, response.body.likes, response.body.hasLike,
             response.body.commentsCount, response.body.tags, comments);
 

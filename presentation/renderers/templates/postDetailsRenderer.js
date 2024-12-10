@@ -1,4 +1,4 @@
-import postDetailsController from "/application/controllers/postDetailsController.js";
+import postDetailsController from "/presentation/controllers/postDetailsController.js";
 
 let postDetailsRenderer = {
     render: async () => {

@@ -1,4 +1,4 @@
-import userService from "/domain/services/userService.js";
+import userService from "/application/services/userService.js";
 
 const logoutController = (button) => {
     button.addEventListener('click', async event => {

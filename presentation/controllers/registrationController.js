@@ -1,7 +1,7 @@
 import registerUserRequest from "/data/DTOs/registerUserRequest.js";
-import userService from "/domain/services/userService.js";
-import dateConverter from "../converters/dateConverter.js";
-import genderConverter from "../converters/genderConverter.js";
+import userService from "/application/services/userService.js";
+import dateConverter from "/application/converters/dateConverter.js";
+import genderConverter from "/application/converters/genderConverter.js";
 import phoneNumberInputHandler from "/presentation/handlers/phoneNumberInputHandler.js";
 
 const registrationController = (form) => {

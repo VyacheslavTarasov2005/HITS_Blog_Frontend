@@ -1,5 +1,5 @@
-import postsService from "/domain/services/postsService.js";
-import tokenService from "/data/tokenService.js";
+import postsService from "/application/services/postsService.js";
+import tokenRepository from "/data/tokenRepository.js";
 
 const likeController = async (postId) => {
     const post = document.getElementById(postId);
@@ -12,7 +12,7 @@ const likeController = async (postId) => {
     const likeIcon = likeButton.querySelector('svg');
 
     likeButton.addEventListener("click", async () => {
-        const token = tokenService.getToken();
+        const token = tokenRepository.getToken();
         if (!token) {
             alert("Необходимо войти в аккаунт");
             return;

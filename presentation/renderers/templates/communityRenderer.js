@@ -1,7 +1,7 @@
-import communityCardController from "/application/controllers/communityCardController.js";
+import communityCardController from "/presentation/controllers/communityCardController.js";
 import postsView from "../components/postsRenderer.js";
-import communityPostsFiltrationController from "/application/controllers/communityPostsFiltrationController.js";
-import tagsController from "/application/controllers/tagsController.js";
+import communityPostsFiltrationController from "/presentation/controllers/communityPostsFiltrationController.js";
+import tagsController from "/presentation/controllers/tagsController.js";
 import dropdownList from "/presentation/handlers/dropdownList.js";
 
 let communityView = {

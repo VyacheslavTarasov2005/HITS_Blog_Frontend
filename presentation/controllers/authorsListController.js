@@ -1,5 +1,5 @@
-import authorsService from "/domain/services/authorsService.js";
-import dateConverter from "../converters/dateConverter.js";
+import authorsService from "/application/services/authorsService.js";
+import dateConverter from "/application/converters/dateConverter.js";
 
 const authorsListController = async () => {
     const authorsContainer = document.querySelector(".authors");

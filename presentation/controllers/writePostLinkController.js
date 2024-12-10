@@ -1,7 +1,7 @@
-import tokenService from "/data/tokenService.js";
+import tokenRepository from "/data/tokenRepository.js";
 
 const writePostLinkController = () => {
-    const token = tokenService.getToken();
+    const token = tokenRepository.getToken();
 
     if (token) {
         const writePostLink = document.querySelector(".write-post-link");

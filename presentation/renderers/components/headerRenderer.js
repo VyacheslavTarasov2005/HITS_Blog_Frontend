@@ -1,4 +1,4 @@
-import headerAuthController from "/application/controllers/headerAuthController.js";
+import headerAuthController from "/presentation/controllers/headerAuthController.js";
 
 let headerView = {
     render: async (route) => {

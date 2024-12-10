@@ -1,7 +1,7 @@
-import postsService from "/domain/services/postsService.js";
-import addressesService from "/domain/services/addressesService.js";
+import postsService from "/application/services/postsService.js";
+import addressesService from "/application/services/addressesService.js";
 import likeController from "./likeController.js";
-import commentsService from "/domain/services/commentsService.js";
+import commentsService from "/application/services/commentsService.js";
 import createCommentRequest from "/data/DTOs/createCommentRequest.js";
 import commentsController from "./commentsController.js";
 
@@ -45,10 +45,10 @@ const postDetailsController = async (context) => {
         const readTime = postContent.querySelector(".read-time");
         readTime.textContent = `Время чтения: ${details.readingTime} минут`;
 
-        if (details.addressId) {
+        if (details.address) {
             const geolocation = postContent.querySelector(".geolocation");
             const address = geolocation.querySelector(".address");
-            address.textContent = await addressesService.getFullAddressById(details.addressId);
+            address.textContent = details.address;
             geolocation.classList.remove("template");
         }
 

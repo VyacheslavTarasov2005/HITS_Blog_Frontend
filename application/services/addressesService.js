@@ -30,8 +30,11 @@ const getFullAddressById = async (addressId) => {
     if (response.status === 200) {
         let result = '';
 
-        for (let i = response.body.length - 1; i >= 0; i--) {
-            result += response.body[i].text + ' ';
+        for (let i = 0; i < response.body.length; i++) {
+            result += response.body[i].text;
+            if (i !== response.body.length - 1) {
+                result += ', ';
+            }
         }
 
         return result;

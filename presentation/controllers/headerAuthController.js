@@ -1,6 +1,6 @@
-import userService from "/domain/services/userService.js";
+import userService from "/application/services/userService.js";
 import dropdownButtons from "/presentation/handlers/dropdownButtons.js";
-import tokenService from "/data/tokenService.js";
+import tokenRepository from "/data/tokenRepository.js";
 import logoutController from "./logoutController.js";
 
 const headerAuthController = async () => {
@@ -66,7 +66,7 @@ const headerAuthController = async () => {
         }
     }
 
-    const token = tokenService.getToken();
+    const token = tokenRepository.getToken();
 
     if (!token) {
         renderLoginLink();

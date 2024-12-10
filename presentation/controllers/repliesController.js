@@ -1,4 +1,4 @@
-import commentsService from "/domain/services/commentsService.js";
+import commentsService from "/application/services/commentsService.js";
 import editCommentButtonController from "./editCommentButtonController.js";
 import deleteCommentButtonController from "./deleteCommentButtonController.js";
 import replyButtonController from "./replyButtonController.js";

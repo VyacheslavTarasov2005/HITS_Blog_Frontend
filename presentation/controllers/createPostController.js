@@ -1,7 +1,7 @@
-import postsService from "/domain/services/postsService.js";
+import postsService from "/application/services/postsService.js";
 import createPostRequest from "/data/DTOs/createPostRequest.js";
-import addressesService from "/domain/services/addressesService.js";
-import communitiesService from "/domain/services/communitiesService.js";
+import addressesService from "/application/services/addressesService.js";
+import communitiesService from "/application/services/communitiesService.js";
 
 const createPostController = async (form) => {
     const title = form.querySelector('input[name="title"]');

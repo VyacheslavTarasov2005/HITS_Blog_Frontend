@@ -1,4 +1,4 @@
-import communitiesService from "/domain/services/communitiesService.js";
+import communitiesService from "/application/services/communitiesService.js";
 
 const subscribeButtonController = async (communityBlock) => {
     const subscribeButton = communityBlock.querySelector(".subscribe-button");

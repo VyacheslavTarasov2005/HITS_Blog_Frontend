@@ -1,7 +1,7 @@
 import api from "/data/api.js";
-import communitiesListCommunityEntity from "../entities/communitiesListCommunityEntity.js";
-import communityInfoEntity from "../entities/communityInfoEntity.js";
-import adminEntity from "../entities/adminEntity.js";
+import communitiesListCommunityEntity from "/domain/entities/communitiesListCommunityEntity.js";
+import communityInfoEntity from "/domain/entities/communityInfoEntity.js";
+import adminEntity from "/domain/entities/adminEntity.js";
 
 const getUserRole = async (communityId) => {
     const response = await api.get(`/community/${communityId}/role`);

@@ -1,4 +1,4 @@
-import tagsService from "/domain/services/tagsService.js";
+import tagsService from "/application/services/tagsService.js";
 
 const tagsController = async (tagsSelector) => {
     try {

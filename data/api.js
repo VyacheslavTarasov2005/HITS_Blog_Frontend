@@ -1,4 +1,4 @@
-import tokenService from './tokenService.js';
+import tokenRepository from './tokenRepository.js';
 
 const API_URL = 'https://blog.kreosoft.space/api';
 
@@ -7,7 +7,7 @@ const request = async (url, method, body = null, query = null) => {
 
     const headers = {"content-type": "application/json"};
 
-    const token = tokenService.getToken();
+    const token = tokenRepository.getToken();
     if (token) {
         headers["Authorization"] = `Bearer ${token}`;
     }
