@@ -13,8 +13,7 @@ const tagsController = async (tagsSelector) => {
         })
     }
     catch (error) {
-        alert("Не удалось получить тэги");
-        console.error(error);
+        alert(error.message);
     }
 }
 

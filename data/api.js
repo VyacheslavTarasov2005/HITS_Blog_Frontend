@@ -23,11 +23,7 @@ const request = async (url, method, body = null, query = null) => {
             body: body ? JSON.stringify(body) : null,
         })
 
-        if (response.status === 200) {
-            return {status: response.status, body: await response.json().catch(() => null)};
-        }
-
-        return {status: response.status};
+        return {"status": response.status, "body": await response.json().catch(() => null)};
     }
     catch (error) {
         console.error("Не удалось выполнить запрос", error);

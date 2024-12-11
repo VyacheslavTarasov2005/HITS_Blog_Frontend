@@ -20,6 +20,9 @@ header nav {
 
 header a,
 header button {
+    display: flex;
+    align-self: center;
+    text-wrap: nowrap;
     color: rgb(60, 60, 60);
     font-size: 1vw;
 }

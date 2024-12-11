@@ -31,7 +31,7 @@ const commentsController = async (postId, comments = null) => {
             }
         }
         catch (error) {
-            alert("Не удалось загрузить комментарии");
+            alert(error.message);
         }
     }
 

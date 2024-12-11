@@ -12,7 +12,7 @@ const getAuthors = async () => {
         return {"authors": response.body, "topThreeAuthorsScore": topThreeAuthorsScore};
     }
     else {
-        throw new Error(response.statusText);
+        throw new Error("Не удалось загрузить авторов");
     }
 }
 

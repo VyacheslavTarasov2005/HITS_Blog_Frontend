@@ -26,8 +26,7 @@ const profileController = async () => {
             birthDate.value = user.birthDate === null ? "" : user.birthDate.substring(0, 10);
         }
         catch (error) {
-            alert("Не удалось получить данные о пользователе");
-            console.error(error);
+            alert(error.message);
         }
     }
 
@@ -46,10 +45,9 @@ const profileController = async () => {
             await route("/profile");
         }
         catch (error) {
-            alert("Не удалось обновить данные пользователя");
-            console.error(error);
+            alert(error.message);
         }
-    })
+    });
 }
 
 export default profileController;

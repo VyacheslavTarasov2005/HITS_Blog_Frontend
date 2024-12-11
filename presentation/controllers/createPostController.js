@@ -2,6 +2,7 @@ import postsService from "/application/services/postsService.js";
 import createPostRequest from "/data/DTOs/createPostRequest.js";
 import addressesService from "/application/services/addressesService.js";
 import communitiesService from "/application/services/communitiesService.js";
+import authChecker from "/application/authChecker.js";
 
 const createPostController = async (form) => {
     const title = form.querySelector('input[name="title"]');
@@ -71,7 +72,7 @@ const createPostController = async (form) => {
                             levelText: address.objectLevelText
                         })));
                     } catch (error) {
-                        console.error(error);
+                        alert(error.message);
                         failure(error);
                     }
                 },
@@ -104,6 +105,11 @@ const createPostController = async (form) => {
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
+
+        if (!authChecker()) {
+            alert("Необходимо войти в аккаунт");
+            return;
+        }
 
         let tagsId = [];
 
@@ -144,8 +150,7 @@ const createPostController = async (form) => {
             }
         }
         catch (error) {
-            alert("Не удалось создать пост");
-            console.error(error);
+            alert(error.message);
         }
     });
 }

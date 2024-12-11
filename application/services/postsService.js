@@ -8,7 +8,11 @@ const createPost = async (request) => {
     const response = await api.post("/post", request);
 
     if (response.status !== 200) {
-        throw new Error(response.statusText);
+        if (response.status === 401) {
+            throw new Error("Не удалось создать пост, ваша сессия истекла, перезайдите в аккаунт");
+        }
+
+        throw new Error("Не удалось создать пост");
     }
 }
 
@@ -19,7 +23,7 @@ const getPosts = async () => {
         return response.body;
     }
     else {
-        throw new Error(response.statusText);
+        throw new Error("Не удалось загрузить посты");
     }
 }
 
@@ -55,7 +59,19 @@ const getPostById = async (postId) => {
         return result;
     }
     else {
-        throw new Error(response.statusText);
+        if (response.status === 401) {
+            throw new Error("Не удалось получить информацию о посте, ваша сессия истекла перезайдите в аккаунт");
+        }
+
+        if (response.status === 403) {
+            throw new Error("Вы не имеете доступа к данному посту");
+        }
+
+        if (response.status === 400) {
+            throw new Error("Пост не найден");
+        }
+
+        throw new Error("Не удалось получить информацию о посте");
     }
 }
 
@@ -63,7 +79,11 @@ const likePost = async (postId) => {
     const response = await api.post(`/post/${postId}/like`);
 
     if (response.status !== 200) {
-        throw new Error(response.statusText);
+        if (response.status === 401) {
+            throw new Error("Не удалось поставить лайк, ваша сессия истекла, перезайдите в аккаунт");
+        }
+
+        throw new Error("Не удалось поставить лайк");
     }
 }
 
@@ -71,7 +91,11 @@ const dislikePost = async (postId) => {
     const response = await api.delete(`/post/${postId}/like`);
 
     if (response.status !== 200) {
-        throw new Error(response.statusText);
+        if (response.status === 401) {
+            throw new Error("Не удалось убрать лайк, ваша сессия истекла, перезайдите в аккаунт");
+        }
+
+        throw new Error("Не удалось убрать лайк");
     }
 }
 

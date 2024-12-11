@@ -2,6 +2,7 @@ import commentsService from "/application/services/commentsService.js";
 import editCommentRequest from "/data/DTOs/editCommentRequest.js";
 import repliesController from "./repliesController.js";
 import commentsController from "./commentsController.js";
+import authChecker from "/application/authChecker.js";
 
 const editCommentButtonController = async (comment, postId, rootComment = null) => {
     const commentContent = comment.querySelector(".content");
@@ -16,6 +17,11 @@ const editCommentButtonController = async (comment, postId, rootComment = null) 
     const editButton = comment.querySelector(".edit");
 
     editButton.addEventListener("click", async () => {
+        if (!authChecker()) {
+            alert("Необходимо войти в аккаунт");
+            return;
+        }
+
         const commentContent = comment.querySelector(".content");
         commentContent.classList.add("template");
 
@@ -40,8 +46,7 @@ const editCommentButtonController = async (comment, postId, rootComment = null) 
             }
         }
         catch (error) {
-            alert("Не удалось изменить комментарий");
-            console.error(error);
+            alert(error.message);
         }
     });
 }

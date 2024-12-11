@@ -1,5 +1,5 @@
 import postsService from "/application/services/postsService.js";
-import tokenRepository from "/data/tokenRepository.js";
+import authChecker from "/application/authChecker.js";
 
 const likeController = async (postId) => {
     const post = document.getElementById(postId);
@@ -12,8 +12,7 @@ const likeController = async (postId) => {
     const likeIcon = likeButton.querySelector('svg');
 
     likeButton.addEventListener("click", async () => {
-        const token = tokenRepository.getToken();
-        if (!token) {
+        if (!authChecker()) {
             alert("Необходимо войти в аккаунт");
             return;
         }
@@ -24,9 +23,8 @@ const likeController = async (postId) => {
                 likeIcon.classList.add("liked");
                 likesQuantity.textContent = (Number(likesQuantity.textContent) + 1).toString();
             }
-            catch (e) {
-                alert("Не удалось поставить лайк");
-                console.error(e);
+            catch (error) {
+                alert(error.message);
             }
         }
         else {
@@ -35,12 +33,11 @@ const likeController = async (postId) => {
                 likeIcon.classList.remove("liked");
                 likesQuantity.textContent = (Number(likesQuantity.textContent) - 1).toString();
             }
-            catch (e) {
-                alert("Не удалось убрать лайк");
-                console.error(e);
+            catch (error) {
+                alert(error.message);
             }
         }
-    })
+    });
 }
 
 export default likeController;

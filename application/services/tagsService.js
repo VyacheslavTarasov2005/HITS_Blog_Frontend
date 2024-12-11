@@ -7,7 +7,7 @@ const getTags = async () => {
         return response.body;
     }
     else {
-        throw new Error(response.statusText);
+        throw new Error("Не удалось загрузить тэги");
     }
 }
 

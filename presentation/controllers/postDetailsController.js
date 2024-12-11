@@ -1,9 +1,9 @@
 import postsService from "/application/services/postsService.js";
-import addressesService from "/application/services/addressesService.js";
 import likeController from "./likeController.js";
 import commentsService from "/application/services/commentsService.js";
 import createCommentRequest from "/data/DTOs/createCommentRequest.js";
 import commentsController from "./commentsController.js";
+import authChecker from "/application/authChecker.js";
 
 const postDetailsController = async (context) => {
     try {
@@ -76,6 +76,11 @@ const postDetailsController = async (context) => {
         creteCommentForm.addEventListener("submit", async (event) => {
             event.preventDefault();
 
+            if (!authChecker()) {
+                alert("Необходимо войти в аккаунт");
+                return;
+            }
+
             const commentText = creteCommentForm.querySelector("textarea");
 
             const request = new createCommentRequest(commentText.value, null);
@@ -85,14 +90,12 @@ const postDetailsController = async (context) => {
                 commentText.value = '';
             }
             catch (error) {
-                alert("Не удалось создать комментарий");
-                console.error(error);
+                alert(error.message);
             }
-        })
+        });
     }
     catch (error) {
-        alert("Не удалось загрузить пост");
-        console.error(error);
+        alert(error.message);
     }
 }
 

@@ -17,7 +17,7 @@ const getAddressByParentIdAndNamePart = async (parentId = null, namePart = null)
         return response.body;
     }
     else {
-        throw new Error(response.statusText);
+        throw new Error("Не удалось загрузить адреса");
     }
 }
 
@@ -40,7 +40,7 @@ const getFullAddressById = async (addressId) => {
         return result;
     }
     else {
-        throw new Error(response.statusText);
+        throw new Error("Не удалось загрузить полный адрес");
     }
 }
 

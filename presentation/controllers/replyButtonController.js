@@ -1,12 +1,18 @@
 import createCommentRequest from "/data/DTOs/createCommentRequest.js";
 import commentsService from "/application/services/commentsService.js";
 import repliesController from "./repliesController.js";
+import authChecker from "/application/authChecker.js";
 
 const replyButtonController = async (comment, postId, rootCommentId = null) => {
     const replyButton = comment.querySelector(".reply-button");
     const replyBlock = comment.querySelector(".write-reply");
 
     replyButton.addEventListener("click", async () => {
+        if (!authChecker()) {
+            alert("Необходимо войти в аккаунт");
+            return;
+        }
+
         replyBlock.classList.remove("template");
     });
 
@@ -34,8 +40,7 @@ const replyButtonController = async (comment, postId, rootCommentId = null) => {
             await repliesController(rootComment, postId);
         }
         catch (error) {
-            alert("Не удалось создать ответ");
-            console.error(error);
+            alert(error.message);
         }
     });
 }

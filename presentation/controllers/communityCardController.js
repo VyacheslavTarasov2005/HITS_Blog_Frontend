@@ -90,8 +90,7 @@ const communityCardController = async () => {
         await unsubscribeButtonController(communityCard);
     }
     catch (error) {
-        alert("Не удалось получить данные о сообществе");
-        console.error(error);
+        alert(error.message);
     }
 }
 

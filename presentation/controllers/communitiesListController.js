@@ -34,8 +34,7 @@ const communitiesListController = async () => {
         }
     }
     catch (error) {
-        alert("Не удалось загрузить сообщества");
-        console.error(error);
+        alert(error.message);
     }
 }
 

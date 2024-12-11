@@ -69,8 +69,7 @@ const repliesController = async (rootComment, postId) => {
         }
     }
     catch (error) {
-        alert("Не удалось загрузить ответы");
-        console.error(error);
+        alert(error.message);
     }
 }
 

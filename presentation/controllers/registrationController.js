@@ -28,10 +28,9 @@ const registrationController = (form) => {
             await route("/");
         }
         catch (error) {
-            alert("Не удалось зарегистрировать пользователя");
-            console.error(error);
+            alert(error.message);
         }
-    })
+    });
 }
 
 export default registrationController;

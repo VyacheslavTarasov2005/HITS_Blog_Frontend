@@ -14,8 +14,7 @@ const loginController = (form) => {
             await userService.loginUser(request);
             await route("/");
         } catch (error) {
-            alert("Неверный логин или пароль");
-            console.error(error);
+            alert(error.message);
         }
     });
 };

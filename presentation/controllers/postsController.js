@@ -105,8 +105,7 @@ const postsController = async () => {
         }
     }
     catch (error) {
-        alert("Не удалось загрузить посты");
-        console.error(error);
+        alert(error.message);
     }
     finally {
         isLoading = false;

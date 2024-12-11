@@ -1,9 +1,7 @@
-import tokenRepository from "/data/tokenRepository.js";
+import authChecker from "/application/authChecker.js";
 
 const writePostLinkController = () => {
-    const token = tokenRepository.getToken();
-
-    if (token) {
+    if (authChecker()) {
         const writePostLink = document.querySelector(".write-post-link");
         writePostLink.classList.remove("disabled");
     }

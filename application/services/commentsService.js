@@ -1,13 +1,25 @@
 import api from "/data/api.js";
 import commentEntity from "/domain/entities/commentEntity.js";
-import DateConverter from "../converters/dateConverter";
-import dateConverter from "../converters/dateConverter";
+import DateConverter from "../converters/dateConverter.js";
+import dateConverter from "../converters/dateConverter.js";
 
 const createComment = async (postId, request) => {
     const response = await api.post(`/post/${postId}/comment`, request);
 
     if (response.status !== 200) {
-        throw new Error(response.statusText);
+        if (response.status === 401) {
+            throw new Error("Не удалось создать комментарий, ваша сессия истекла, перезайдите в аккаунт");
+        }
+
+        if (response.status === 403) {
+            throw new Error("Вы не можете писать комментарии к этому посту");
+        }
+
+        if (response.status === 404) {
+            throw new Error("Пост не найден");
+        }
+
+        throw new Error("Не удалось написать комментарий");
     }
 }
 
@@ -32,7 +44,11 @@ const getReplies = async (commentId) => {
         return result;
     }
     else {
-        throw new Error(response.statusText);
+        if (response.status === 404) {
+            throw new Error("Комментарий не найден");
+        }
+
+        throw new Error("Не удалось получить ответы к комментарию");
     }
 }
 
@@ -40,7 +56,19 @@ const deleteComment = async (commentId) => {
     const response = await api.delete(`/comment/${commentId}`);
 
     if (response.status !== 200) {
-        throw new Error(response.statusText);
+        if (response.status === 401) {
+            throw new Error("Не удалось удалить комментарий, ваша сессия истекла, перезайдите в аккаунт");
+        }
+
+        if (response.status === 403) {
+            throw new Error("Вы не можете удалить этот комментарий");
+        }
+
+        if (response.status === 404) {
+            throw new Error("Комментарий не найден");
+        }
+
+        throw new Error("Не удалось удалить комментарий");
     }
 }
 
@@ -48,7 +76,19 @@ const editComment = async (commentId, request) => {
     const response = await api.put(`/comment/${commentId}`, request);
 
     if (response.status !== 200) {
-        throw new Error(response.statusText);
+        if (response.status === 401) {
+            throw new Error("Не удалось изменить комментарий, ваша сессия истекла, перезайдите в аккаунт");
+        }
+
+        if (response.status === 403) {
+            throw new Error("Вы не можете изменить этот комментарий");
+        }
+
+        if (response.status === 404) {
+            throw new Error("Комментарий не найден");
+        }
+
+        throw new Error("Не удалось изменить комментарий");
     }
 }
 
@@ -73,7 +113,19 @@ const getRootComments = async (postId) => {
         return comments;
     }
     else {
-        throw new Error(response.statusText);
+        if (response.status === 401) {
+            throw new Error("Не удалось загрузить комментарии, ваша сессия истекла, перезайдите в аккаунт");
+        }
+
+        if (response.status === 403) {
+            throw new Error("Вы не можете получить комментарии к этому посту");
+        }
+
+        if (response.status === 404) {
+            throw new Error("Пост не найден");
+        }
+
+        throw new Error("Не удалось загрузить комментарии");
     }
 }
 

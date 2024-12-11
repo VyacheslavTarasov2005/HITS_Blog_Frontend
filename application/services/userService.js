@@ -14,7 +14,11 @@ const registerUser = async (registerUserRequest) => {
         }
     }
     else {
-        throw new Error(response.statusText);
+        if (response.body.DuplicateUserName) {
+            throw new Error("Пользователь с такой почтой уже существует")
+        }
+
+        throw new Error("Не удалось зарегистрировать пользователя");
     }
 }
 
@@ -26,7 +30,7 @@ const loginUser = async (loginUserRequset) => {
         localStorage.removeItem("email");
     }
     else {
-        throw new Error(response.statusText);
+        throw new Error("Не удалось войти в аккаунт");
     }
 }
 
@@ -39,7 +43,7 @@ const logoutUser = async () => {
         localStorage.removeItem("userId");
     }
     else {
-        throw new Error(response.statusText);
+        throw new Error("Не удалось выйти из аккаунта");
     }
 }
 
@@ -50,7 +54,11 @@ const getUser = async () => {
         return response.body;
     }
     else {
-        throw new Error(response.statusText);
+        if (response.status === 401) {
+            throw new Error("Не удалось получить данные о пользователе, ваша сессия истекла, перезайдите в аккаунт");
+        }
+
+        throw new Error("Не удалось получить данные о пользователе");
     }
 }
 
@@ -61,7 +69,15 @@ const editUser = async (editUserRequest) => {
         localStorage.removeItem("email");
     }
     else {
-        throw new Error(response.statusText);
+        if (response.status === 401) {
+            throw new Error("Не удалось изменить данные о пользователе, ваша сессия истекла, перезайдите в аккаунт");
+        }
+
+        if (response.body.errors.Email) {
+            throw new Error("Пользователь с такой почтой уже существует");
+        }
+
+        throw new Error("Не удалось изменить данные о пользователе");
     }
 }
 

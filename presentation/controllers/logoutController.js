@@ -9,10 +9,9 @@ const logoutController = (button) => {
             await route("/");
         }
         catch (error) {
-            alert("Не удалось выйти из аккаунта");
-            console.error(error);
+            alert(error.message);
         }
-    })
+    });
 };
 
 export default logoutController;

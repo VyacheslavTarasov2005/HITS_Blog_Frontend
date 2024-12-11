@@ -51,11 +51,6 @@ const authorsListController = async () => {
             authorName.textContent = author.fullName;
             authorName.href = `/?author=${author.fullName}`;
 
-            /*authorName.addEventListener("click", async () => {
-                const
-                await route("/");
-            });
-*/
             const birthDate = authorInfo.querySelector('.birth-date .date');
             birthDate.textContent = dateConverter.convertFrom(author.birthDate);
 
@@ -74,8 +69,7 @@ const authorsListController = async () => {
         });
     }
     catch (error) {
-        alert("Не удалось загрузить список авторов");
-        console.error(error);
+        alert(error.message);
     }
 }
 

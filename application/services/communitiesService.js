@@ -13,14 +13,18 @@ const getUserRole = async (communityId) => {
         return null;
     }
     else {
-        throw new Error(response.statusText);
+        if (response.status === 404) {
+            throw new Error("Сообщество не найдено");
+        }
+
+        throw new Error("Не удалось получить роль пользователя");
     }
 }
 
 const getCommunitiesList = async () => {
     const communitiesListResponse = await api.get("/community");
     if (communitiesListResponse.status !== 200) {
-        throw new Error(communitiesListResponse.statusText);
+        throw new Error("Не удалось загрузить сообщества");
     }
 
     let myCommunitiesLoaded = false
@@ -59,9 +63,6 @@ const getCommunitiesList = async () => {
 
 const getCommunitiesListWithAdminRole = async () => {
     const communitiesListResponse = await api.get("/community");
-    if (communitiesListResponse.status !== 200) {
-        throw new Error(communitiesListResponse.statusText);
-    }
 
     let result = [];
     for (const community of communitiesListResponse.body) {
@@ -79,7 +80,15 @@ const subscribe = async (communityId) => {
     const response = await api.post(`/community/${communityId}/subscribe`);
 
     if (response.status !== 200) {
-        throw new Error(response.statusText);
+        if (response.status === 401) {
+            throw new Error("Не удалось подписаться на сообщество, ваша сессия истекла, перезайдите в аккаунт");
+        }
+
+        if (response.status === 404) {
+            throw new Error("Сообщество не найдено");
+        }
+
+        throw new Error("Не удалось подписаться на сообщество");
     }
 }
 
@@ -87,7 +96,15 @@ const unsubscribe = async (communityId) => {
     const response = await api.delete(`/community/${communityId}/unsubscribe`);
 
     if (response.status !== 200) {
-        throw new Error(response.statusText);
+        if (response.status === 401) {
+            throw new Error("Не удалось отписаться от сообщества, ваша сессия истекла, перезайдите в аккаунт");
+        }
+
+        if (response.status === 404) {
+            throw new Error("Сообщество не найдено");
+        }
+
+        throw new Error("Не удалось отписаться от сообщества");
     }
 }
 
@@ -99,7 +116,19 @@ const getCommunityPosts = async (communityId) => {
         return response.body;
     }
     else {
-        throw new Error(response.statusText);
+        if (response.status === 401) {
+            throw new Error("Не удалось загрузить посты сообщества, ваша сессия истекла, перезайдите в аккаунт");
+        }
+
+        if (response.status === 403) {
+            throw new Error("Вы не имеете доступа к постам данного сообщества");
+        }
+
+        if (response.status === 404) {
+            throw new Error("Сообщество не найдено");
+        }
+
+        throw new Error("Не удалось загрузить посты сообщества");
     }
 }
 
@@ -114,7 +143,11 @@ const getCommunityInfo = async (communityId) => {
         })
     }
     else {
-        throw new Error(communityInfoResponse.statusText);
+        if (communityInfoResponse.status === 404) {
+            throw new Error("Сообщество не найдено");
+        }
+
+        throw new Error("Не удалось загрузить информацию о сообществе");
     }
 
     const userRole = await getUserRole(communityId);
@@ -127,7 +160,19 @@ const createPost = async (communityId, request) => {
     const response = await api.post(`/community/${communityId}/post`, request);
 
     if (response.status !== 200) {
-        throw new Error(response.statusText);
+        if (response.status === 401) {
+            throw new Error("Не удалось создать пост, ваша сессия истекла, перезайдите в аккаунт");
+        }
+
+        if (response.status === 403) {
+            throw new Error("Вам запрещено создание постов в этом сообществе");
+        }
+
+        if (response.status === 404) {
+            throw new Error("Сообщество не найдено");
+        }
+
+        throw new Error("Не удалось создать пост");
     }
 }
 
