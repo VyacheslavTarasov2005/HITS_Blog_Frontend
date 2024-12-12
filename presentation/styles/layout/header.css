@@ -14,7 +14,7 @@ header div {
 
 header nav {
     display: flex;
-    gap: 10%;
+    gap: 1em;
     margin-left: 2%;
 }
 
@@ -51,7 +51,9 @@ header button {
 }
 
 #profileButton > button > .symbol {
-    color: black;
+    align-self: center;
+    width: 1vw;
+    height: 1vw;
 }
 
 #profileButton > .dropdown-menu {
