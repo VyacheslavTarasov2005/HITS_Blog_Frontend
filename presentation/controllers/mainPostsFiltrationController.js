@@ -2,6 +2,10 @@ import sortingConverter from "/application/converters/sortingConverter.js";
 import postsController from "./postsController.js";
 
 const mainPostsFiltrationController = async (content) => {
+    if (!content) {
+        return;
+    }
+
     const form = content.querySelector('.posts-filtration form');
 
     const author = form.querySelector('input[name="authorName"]');

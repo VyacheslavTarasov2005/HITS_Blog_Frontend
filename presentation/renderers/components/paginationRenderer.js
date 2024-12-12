@@ -1,5 +1,4 @@
 import dropdownList from "/presentation/handlers/dropdownList.js";
-//import paginationController from "/application/controllers/paginationController.js";
 
 let paginationView = {
     render: async (content) => {
